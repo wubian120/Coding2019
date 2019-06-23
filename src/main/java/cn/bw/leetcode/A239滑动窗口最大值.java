@@ -17,7 +17,7 @@ public class A239滑动窗口最大值 {
         int len = nums.length;
 
         int[] results = new int[len - k + 1];
-        
+
         for (int i = 0; i < k; i++) {
             if (nums[i] > max) {
                 max = nums[i];
