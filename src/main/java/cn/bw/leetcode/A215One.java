@@ -93,6 +93,17 @@ public class A215One {
     }
 
 
+    public static void main(String...args){
+        int[] nums = {3,2,1,5,6,4};
+        int k = 2;
+
+        A215One a = new A215One();
+        int result  = a.findKthLargestTwo(nums,k);
+
+        System.out.println(result);
+
+
+    }
 
 
 
