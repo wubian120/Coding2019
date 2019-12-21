@@ -11,6 +11,48 @@ import java.util.*;
 public class A332重新规划行程 {
 
 
+    public List<String> findItinerary2(List<List<String>> tickets) {
+        // 因为逆序插入，所以用链表
+        List<String> ans = new LinkedList<>();
+
+        if (tickets == null || tickets.size() == 0)
+            return ans;
+
+        Map<String, PriorityQueue<String>> graph = new HashMap<>();
+
+        for (List<String> pair : tickets) {
+            // 因为涉及删除操作，我们用链表
+            PriorityQueue<String> nbr = graph.computeIfAbsent(pair.get(0), k -> new PriorityQueue<>());
+            nbr.add(pair.get(1));
+        }
+
+        // 按目的顶点排序
+
+        visit(graph, "JFK", ans);
+
+        return ans;
+    }
+
+    // DFS方式遍历图，当走到不能走为止，再将节点加入到答案
+    private void visit(Map<String, PriorityQueue<String>> graph, String src, List<String> ans) {
+
+        Stack<String> stack = new Stack<>();
+
+        stack.push(src);
+
+        while (!stack.isEmpty()) {
+            PriorityQueue<String> nbr;
+
+            while ((nbr = graph.get(stack.peek())) != null &&
+                    nbr.size() > 0) {
+                stack.push(nbr.poll());
+            }
+            ans.add(0, stack.pop());
+        }
+    }
+
+
+
     public List<String> findItinerary(List<List<String>> tickets) {
         if(tickets == null || tickets.size()==0){
             return Collections.emptyList();
@@ -39,6 +81,22 @@ public class A332重新规划行程 {
         }
         result.add(0,start);
 
+    }
+
+
+    public static void main(String...args){
+
+        List<String> ticket = new LinkedList<>();
+        List<List<String>> tickets = new LinkedList<>();
+
+        String b1="", e1="";
+        String b2="", e2="";
+        String b3="", e3="";
+        String b4="", e4="";
+        String b5="", e5="";
+
+        A332重新规划行程 a = new A332重新规划行程();
+//        a.findItinerary2()
     }
 
 
