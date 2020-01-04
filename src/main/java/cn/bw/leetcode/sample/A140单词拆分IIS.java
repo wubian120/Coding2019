@@ -53,6 +53,7 @@ public class A140单词拆分IIS {
                 stringBuilder.append(word);
                 stringBuilder.append(" ");
             }
+            //删掉最后一个 空格
             stringBuilder.deleteCharAt(stringBuilder.length() - 1);
             res.add(stringBuilder.toString());
 

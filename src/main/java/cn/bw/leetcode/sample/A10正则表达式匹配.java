@@ -19,7 +19,8 @@ public class A10正则表达式匹配 {
 
         if(p.length()>=2 && p.charAt(1)=='*'){
 
-            return isMatch(s,p.substring(2)) || (firstMatch && isMatch(s.substring(1),p));
+            return isMatch(s,p.substring(2))
+                    || (firstMatch && isMatch(s.substring(1),p));
 
         }else {
             return firstMatch && isMatch(s.substring(1),p.substring(1));
