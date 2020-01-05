@@ -1,5 +1,9 @@
 package cn.bw.leetcode.sample;
 
+/***
+ *
+ *
+ */
 public class A87扰乱字符串s {
 
     public boolean isScramble(String s1, String s2) {
