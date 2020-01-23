@@ -11,10 +11,12 @@ public class A887鸡蛋掉落s {
 
     public int superEggDrop(int K, int N) {
 
+
         int[] dp =new int[K+1];
         int result = 0;
 
         while (dp[K]<N){
+            //
             for(int i=K;i>0;i--){
                 dp[i]= dp[i] + dp[i-1]+1;
             }
