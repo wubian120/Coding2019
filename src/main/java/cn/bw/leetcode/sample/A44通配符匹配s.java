@@ -2,6 +2,32 @@ package cn.bw.leetcode.sample;
 
 public class A44通配符匹配s {
 
+
+
+    ///https://leetcode-cn.com/problems/wildcard-matching/solution/shuang-zhi-zhen-he-dong-tai-gui-hua-by-powcai/
+    public boolean isMatch2(String s, String p) {
+        boolean[][] dp = new boolean[s.length() + 1][p.length() + 1];
+        dp[0][0] = true;
+        for (int j = 1; j < p.length() + 1; j++) {
+            if (p.charAt(j - 1) == '*') {
+                dp[0][j] = dp[0][j - 1];
+            }
+        }
+        for (int i = 1; i < s.length() + 1; i++) {
+            for (int j = 1; j < p.length() + 1; j++) {
+                if (s.charAt(i - 1) == p.charAt(j - 1) || p.charAt(j - 1) == '?') {
+                    dp[i][j] = dp[i - 1][j - 1];
+                } else if (p.charAt(j - 1) == '*') {
+                    dp[i][j] = dp[i][j - 1] || dp[i - 1][j];
+                }
+            }
+        }
+        return dp[s.length()][p.length()];
+
+    }
+
+
+
     //dp 解法
     public boolean isMatch(String text, String pattern) {
         // 多一维的空间，因为求 dp[len - 1][j] 的时候需要知道 dp[len][j] 的情况，

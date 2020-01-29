@@ -3,6 +3,15 @@ package cn.bw.leetcode.sample;
 /**
  * @ClassName : A132分割回文串IIs
  * @Description : leetcode 132 分割回文串II
+ * 返回 符合要求的 最少分割次数。
+ * 思路：
+ *
+ * dp[i][j]   i,j 之间是 回文子串
+ * 两层遍历， 左右 判断是否是回文子串， 在选择大小。
+ *
+ *
+ *
+ *
  * @Author : Richard.Wu
  * @Date: 2020-01-23 23:16
  */
