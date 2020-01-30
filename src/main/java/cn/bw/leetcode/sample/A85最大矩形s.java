@@ -33,7 +33,24 @@ public class A85最大矩形s {
             }
             // update maxarea with the maximum area from this row's histogram
             maxarea = Math.max(maxarea, leetcode84(dp));
-        } return maxarea;
+        }
+        return maxarea;
+    }
+
+
+
+    public static void main(String...args){
+
+        char[][] matrix={{'1','0','1','0','0'},
+                {'1','0','1','1','1'},
+                {'1','1','1','1','1'},
+                {'1','0','0','1','0'}};
+
+        A85最大矩形s a = new A85最大矩形s();
+
+        int result = a.maximalRectangle(matrix);
+
+
     }
 
 
