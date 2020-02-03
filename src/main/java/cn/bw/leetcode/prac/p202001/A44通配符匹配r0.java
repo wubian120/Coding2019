@@ -3,6 +3,9 @@ package cn.bw.leetcode.prac.p202001;
 /**
  * @ClassName : A44通配符匹配r0
  * @Description :
+ * dp[i][j] 表示s的 到i位置 p的j位置
+ *
+ *
  * @Author : Richard.Wu
  * @Date: 2020-01-30 15:59
  */
