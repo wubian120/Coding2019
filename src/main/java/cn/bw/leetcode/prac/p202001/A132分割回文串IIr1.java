@@ -21,7 +21,9 @@ public class A132分割回文串IIr1 {
                 if (s.charAt(left) == s.charAt(right)) {
                     if ( (right - left <2 ||dp[left + 1][right - 1] )) {
                         dp[left][right] = true;
-                        results[right] = left == 0 ? 0 : Math.min(results[right], results[left - 1] + 1);
+                        results[right] =
+                                left == 0 ? 0 : Math.min(results[right],
+                                        results[left - 1] + 1);
                     }
                 }
             }

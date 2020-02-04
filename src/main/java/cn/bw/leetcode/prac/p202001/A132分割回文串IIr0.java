@@ -20,9 +20,12 @@ public class A132分割回文串IIr0 {
             minSteps[i] = i;
 
             for (int j = 0; j <= i; j++) {
-                if (s.charAt(i) == s.charAt(j) && (i - j < 2 || dp[j + 1][i - 1])) {
+                if (s.charAt(i) == s.charAt(j) &&
+                        (i - j < 2 || dp[j + 1][i - 1])) {
                     dp[j][i] = true;
-                    minSteps[i] = j == 0 ? 0 : Math.min(minSteps[i], minSteps[j - 1] + 1);
+                    minSteps[i] =
+                            j == 0 ? 0 :
+                                    Math.min(minSteps[i], minSteps[j - 1] + 1);
                 }
             }
 
