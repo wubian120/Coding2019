@@ -16,7 +16,9 @@ public class A132分割回文串IIr1 {
         boolean[][] dp = new boolean[len][len];
 
         for (int right = 0; right < len; right++) {
+
             results[right] = right;
+
             for (int left = 0; left <= right; left++) {
                 if (s.charAt(left) == s.charAt(right)) {
                     if ( (right - left <2 ||dp[left + 1][right - 1] )) {
