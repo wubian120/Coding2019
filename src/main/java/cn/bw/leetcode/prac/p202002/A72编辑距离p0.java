@@ -1,11 +1,15 @@
-package cn.bw.leetcode.sample;
+package cn.bw.leetcode.prac.p202002;
 
-public class A72编辑距离s {
+/**
+ * @ClassName : A72编辑距离p0
+ * @Description :
+ * @Author : Richard.Wu
+ * @Date: 2020-02-04 20:55
+ */
+
+public class A72编辑距离p0 {
+
     public int minDistance(String word1, String word2) {
-
-        //dp[i][j]  表示word1的前i个字母 和 word2的前j个字母之间的编辑距离。
-
-        //dp[i][j] 代表最小操作数（步骤），从 word1[0..i-1]转化为 word2[0..j-1].
         int len1 = word1.length();
         int len2 = word2.length();
 
@@ -29,6 +33,6 @@ public class A72编辑距离s {
             }
         }
         return dp[len1][len2];
-
     }
+
 }
