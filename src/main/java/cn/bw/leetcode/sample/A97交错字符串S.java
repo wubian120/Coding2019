@@ -1,5 +1,10 @@
 package cn.bw.leetcode.sample;
 
+
+/***
+ * dp[i][j] 表示s1的 i 和 s2 的j  是否可以交错 组成s3的 前i+j 
+
+ */
 public class A97交错字符串S {
     public boolean isInterleave(String s1, String s2, String s3) {
         int len1 = s1.length(), len2 = s2.length(), len3 = s3.length();
@@ -21,7 +26,8 @@ public class A97交错字符串S {
 
         for (int i = 1; i <= len1; i++) {
             for (int j = 1; j <= len2; j++) {
-                dp[i][j] = (dp[i - 1][j] && s1.charAt(i - 1) == s3.charAt(i + j - 1)) ||
+                dp[i][j] = (dp[i - 1][j] && s1.charAt(i - 1) == s3.charAt(i + j - 1))
+                        ||
                         (dp[i][j - 1] && s2.charAt(j - 1) == s3.charAt(i + j - 1));
             }
         }
