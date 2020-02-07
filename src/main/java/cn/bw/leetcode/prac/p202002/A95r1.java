@@ -1,17 +1,16 @@
-package cn.bw.leetcode.sample;
+package cn.bw.leetcode.prac.p202002;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
- * @ClassName : A95s2
+ * @ClassName : A95r1
  * @Description :
  * @Author : Richard.Wu
- * @Date: 2020-02-05 14:08
+ * @Date: 2020-02-07 11:52
  */
 
-public class A95s2 {
+public class A95r1 {
 
     public class TreeNode {
         int val;
@@ -24,26 +23,24 @@ public class A95s2 {
     }
 
     public List<TreeNode> generateTrees(int n) {
-
         if(n==0){
-            return Collections.emptyList();
+            return new LinkedList<>();
         }
         return generate(1,n);
+
     }
 
     private List<TreeNode> generate(int start, int end) {
         List<TreeNode> tree = new LinkedList<>();
-
         if (start > end) {
             tree.add(null);
             return tree;
         }
 
-        //注意 i<=end
-        for (int i = start; i <= end; i++) {
+        for(int i=start;i<=end;i++){
 
-            List<TreeNode> left = generate(start, i - 1);
-            List<TreeNode> right = generate(i + 1, end);
+            List<TreeNode> left=generate(start,i-1);
+            List<TreeNode> right=generate(i+1,end);
 
             for(TreeNode l:left){
                 for(TreeNode r:right){
@@ -57,10 +54,6 @@ public class A95s2 {
         }
         return tree;
     }
-
-
-
-
 
 
 }
