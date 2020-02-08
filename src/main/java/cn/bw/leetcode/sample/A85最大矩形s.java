@@ -26,9 +26,6 @@ public class A85最大矩形s {
         for(int i = 0; i < matrix.length; i++) {
             for(int j = 0; j < matrix[0].length; j++) {
 
-                // update the state of this row's histogram using the last row's histogram
-                // by keeping track of the number of consecutive ones
-
                 dp[j] = matrix[i][j] == '1' ? dp[j] + 1 : 0;
             }
             // update maxarea with the maximum area from this row's histogram

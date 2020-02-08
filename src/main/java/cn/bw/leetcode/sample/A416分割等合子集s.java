@@ -21,12 +21,15 @@ public class A416分割等合子集s {
         for (int i : nums) {
             sum += i;
         }
+        //和的余 为1， 和为奇数
         if (sum % 2 == 1)
             return false;
+
         int target = sum / 2;
+
         boolean[] dp = new boolean[target + 1];
         dp[0] = true;
-        //建立dp数组，dp[i]表示能否找到和为i的数组元素集合
+        //dp[i]表示能否找到和为i的数组元素集合
         for (int num : nums) {
             for (int i = target; i >= num; i--) {
                 if (dp[i - num] == true)
@@ -35,4 +38,19 @@ public class A416分割等合子集s {
         }
         return dp[target];
     }
+
+    public static void main(String...args){
+
+        int[] nums = {1,5,11,5};
+
+        A416分割等合子集s a = new A416分割等合子集s();
+
+        boolean result = a.canPartition(nums);
+
+        System.out.println(result);
+        System.out.println("end");
+
+
+    }
+
 }
