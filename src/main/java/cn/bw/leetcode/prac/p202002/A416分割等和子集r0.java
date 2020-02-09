@@ -23,7 +23,7 @@ public class A416分割等和子集r0 {
         int half=sum/2;
 
         //dp[i] nums数组 能够组成 和为i的 状态。
-        boolean[] dp=new boolean[half];
+        boolean[] dp=new boolean[half+1];
         dp[0]=true;
 
         for(int num:nums){
