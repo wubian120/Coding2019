@@ -18,11 +18,13 @@ public class A72编辑距离s {
             dp[0][i]=i;
         }
 
+        //注意： 从1开始
         for(int i=1;i<=len1;i++){
             for(int j=1;j<=len2;j++){
                 if(word1.charAt(i-1)==word2.charAt(j-1)){
                     dp[i][j]=dp[i-1][j-1];
                 }else {
+                    
                     dp[i][j]=1+Math.min(dp[i-1][j-1],
                             Math.min(dp[i-1][j],dp[i][j-1]));
                 }
