@@ -9,20 +9,33 @@ package cn.bw.leetcode.sample;
 
 public class A152乘积最大子序列s {
     public int maxProduct(int[] nums) {
-        int n = nums.length;
-
-
-        int dpMax = nums[0];
-        int dpMin = nums[0];
+        int len = nums.length;
+        int tmax = nums[0];
+        int tmin = nums[0];
         int max = nums[0];
-        for (int i = 1; i < n; i++) {
-            //更新 dpMin 的时候需要 dpMax 之前的信息，所以先保存起来
-            int preMax = dpMax;
-            dpMax = Math.max(dpMin * nums[i], Math.max(dpMax * nums[i], nums[i]));
-            dpMin = Math.min(dpMin * nums[i], Math.min(preMax * nums[i], nums[i]));
-            max = Math.max(max, dpMax);
+
+        for (int i = 1; i < len; i++) {
+
+            int pre = tmax;
+            tmax = Math.max(tmin * nums[i], Math.max(tmax * nums[i], nums[i]));
+            tmin = Math.min(tmin * nums[i], Math.min(pre * nums[i], nums[i]));
+            max = Math.max(max, tmax);
         }
+
         return max;
+    }
+
+
+    public static void main(String[] args){
+
+        int[] nums={2,3,-2,4};
+
+        A152乘积最大子序列s a = new A152乘积最大子序列s();
+
+        int result = a.maxProduct(nums);
+
+        System.out.println(result);
+
     }
 
 }
