@@ -4,7 +4,7 @@ package cn.bw.leetcode.sample;
  * 76.最小覆盖子串
  * https://leetcode-cn.com/problems/minimum-window-substring/
  */
-public class A76s {
+public class A76最小覆盖子串s {
     public String minWindow(String s, String t) {
         char[] schars = s.toCharArray();
         char[] tchars = t.toCharArray();
