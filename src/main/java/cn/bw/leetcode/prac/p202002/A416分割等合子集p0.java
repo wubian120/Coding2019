@@ -24,29 +24,51 @@ public class A416分割等合子集p0 {
 
         boolean[][] dp = new boolean[len][half + 1];
 
-        if(nums[0]<=half){
-            dp[0][0]=true;
+        if (nums[0] <= half) {
+            dp[0][0] = true;
         }
 
-        for (int i =1; i < len; i++) {
+        for (int i = 1; i < len; i++) {
             for (int j = 0; j <= half; j++) {
-                if(nums[i]==j){
-                    dp[i][j]=true;
+                if (nums[i] == j) {
+                    dp[i][j] = true;
                     continue;
-                }else if(nums[i]<j){
-                    dp[i][j]=dp[i-1][j]||dp[i-1][j-nums[i]];
+                } else if (nums[i] < j) {
+                    dp[i][j] = dp[i - 1][j] || dp[i - 1][j - nums[i]];
                 }
             }
 
         }
 
-        return dp[len-1][half];
+        return dp[len - 1][half];
     }
 
 
     public boolean canPartition1(int[] nums) {
 
-        
+        int len=nums.length;
+        int sum = 0, half = 0;
+        for (int i : nums) {
+            sum += i;
+        }
+        if ((sum & 1) == 1) {
+            return false;
+        }
+        half = sum/2;
+
+        boolean[] dp = new boolean[half+1];
+
+        dp[0]=true;
+        for(int i=0;i<len;i++){
+            for(int j=half;j>=nums[i];j--){
+
+                if(dp[j-nums[i]]){
+                    dp[j]=true;
+                }
+            }
+        }
+
+        return dp[half];
 
     }
 
