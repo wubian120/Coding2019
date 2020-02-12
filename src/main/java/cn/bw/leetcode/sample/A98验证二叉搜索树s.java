@@ -31,7 +31,8 @@ public class A98验证二叉搜索树s {
             return false;
         }
 
-        return isValidBST(root.left, left, (long)root.val) && isValidBST(root.right, (long) root.val, right);
+        return isValidBST(root.left, left, (long)root.val) &&
+                isValidBST(root.right, (long) root.val, right);
 
     }
 }
