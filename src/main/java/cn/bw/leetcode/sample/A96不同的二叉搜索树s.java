@@ -12,6 +12,9 @@ public class A96不同的二叉搜索树s {
 
     public int numTrees(int n) {
 
+
+        //why n+1  not n?
+
         int[] dp = new int[n + 1];
         dp[0] = 1;
         dp[1] = 1;
