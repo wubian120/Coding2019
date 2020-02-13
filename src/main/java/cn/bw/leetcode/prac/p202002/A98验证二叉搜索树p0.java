@@ -15,7 +15,6 @@ public class A98验证二叉搜索树p0 {
         int val;
         TreeNode left;
         TreeNode right;
-
         TreeNode(int x) {
             val = x;
         }
@@ -24,7 +23,6 @@ public class A98验证二叉搜索树p0 {
     public boolean isValidBST(TreeNode root) {
 
         return isValidBST(root,Long.MIN_VALUE,Long.MAX_VALUE);
-
     }
 
     private boolean isValidBST(TreeNode root, long left, long right){
@@ -37,7 +35,5 @@ public class A98验证二叉搜索树p0 {
             return isValidBST(root.left, left, (long)root.val)&&
                     isValidBST(root.right,(long)root.val,right);
         }
-
-
     }
 }
