@@ -1,13 +1,13 @@
-package cn.bw.leetcode.sample;
+package cn.bw.leetcode.prac.p202002;
 
 /**
- * @ClassName : A101对称二叉树s
+ * @ClassName : A101对称二叉树p0
  * @Author : Richard.Wu
- * @Date: 2020-02-14 11:30
+ * @Date: 2020-02-14 23:41
  * @Description :
  */
 
-public class A101对称二叉树s {
+public class A101对称二叉树p0 {
 
     public class TreeNode {
         int val;
@@ -18,8 +18,6 @@ public class A101对称二叉树s {
             val = x;
         }
     }
-
-
 
     public boolean isSymmetric(TreeNode root) {
         if(root==null)return true;
@@ -41,4 +39,6 @@ public class A101对称二叉树s {
 
 
     }
+
+
 }
