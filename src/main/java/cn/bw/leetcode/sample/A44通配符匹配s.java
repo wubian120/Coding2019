@@ -6,6 +6,9 @@ public class A44通配符匹配s {
 
     ///https://leetcode-cn.com/problems/wildcard-matching/solution/shuang-zhi-zhen-he-dong-tai-gui-hua-by-powcai/
     public boolean isMatch2(String s, String p) {
+
+
+        /// dp[i][j] 表示 p的前j 是否可以和 s的 前i 匹配。
         boolean[][] dp = new boolean[s.length() + 1][p.length() + 1];
         dp[0][0] = true;
 
