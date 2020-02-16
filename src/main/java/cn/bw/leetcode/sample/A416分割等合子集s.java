@@ -74,6 +74,7 @@ public class A416分割等合子集s {
         dp[0] = true;
 
         for (int num : nums) {
+            //注意 边界条件 >=
             for (int i = half; i >= num; i--) {
                 //dp[i-num] 表示 可以找到 和为 i-num的集合
                 if (dp[i - num]) {
