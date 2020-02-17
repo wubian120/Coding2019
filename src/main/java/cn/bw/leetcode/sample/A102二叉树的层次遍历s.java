@@ -28,41 +28,44 @@ public class A102二叉树的层次遍历s {
 
     public List<List<Integer>> levelOrder1(TreeNode root) {
         List<List<Integer>> results = new LinkedList<>();
-
-        List<TreeNode> treeList = new ArrayList<>();
-
         if (root == null) return results;
+        List<TreeNode> tree = new LinkedList<>();
 
-        treeList.add(root);
+        tree.add(root);
+        while (!tree.isEmpty()) {
+            List<Integer> levelVals = new LinkedList<>();
+            List<TreeNode> levelNodes = new LinkedList<>();
 
-        while (!treeList.isEmpty()) {
-            List<Integer> values = new ArrayList<>();
-            List<TreeNode> nodeList = new LinkedList<>();
-
-            for (TreeNode currentNode : treeList) {
-                values.add(currentNode.val);
-                if (currentNode.left != null)
-                    nodeList.add(currentNode.left);
-                if (currentNode.right != null)
-                    nodeList.add(currentNode.right);
-
+            for (TreeNode cur : tree) {
+                levelVals.add(cur.val);
+                if (cur.left != null) {
+                    levelNodes.add(cur.left);
+                }
+                if (cur.right != null) {
+                    levelNodes.add(cur.right);
+                }
             }
-            treeList = nodeList;
-            results.add(values);
+
+            results.add(levelVals);
+            tree = levelNodes;
         }
+
         return results;
+
 
     }
 
 
     public List<List<Integer>> levelOrder2(TreeNode root) {
         List<List<Integer>> results = new ArrayList<>();
-        handleLevelOrder(root,results,0);
+        handleLevelOrder(root, results, 0);
         return results;
     }
 
     private void handleLevelOrder(TreeNode root, List<List<Integer>> results, int dept) {
-        if (root == null) { return; }
+        if (root == null) {
+            return;
+        }
 
         if (dept >= results.size()) {
             results.add(new ArrayList<>());
@@ -76,7 +79,6 @@ public class A102二叉树的层次遍历s {
             handleLevelOrder(root.right, results, dept + 1);
         }
     }
-
 
 
     public List<List<Integer>> levelOrder(TreeNode root) {
