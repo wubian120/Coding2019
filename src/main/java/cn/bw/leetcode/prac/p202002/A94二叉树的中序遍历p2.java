@@ -29,6 +29,7 @@ public class A94二叉树的中序遍历p2 {
         Stack<TreeNode> stack=new Stack<>();
         TreeNode cur=root;
 
+        // 注意条件 ｜｜
         while (cur!=null || !stack.isEmpty()){
             while (cur!=null){
                 stack.push(cur);
