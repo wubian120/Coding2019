@@ -19,7 +19,6 @@ public class A96p2 {
                 dp[i] += dp[j] * dp[i - j - 1];
             }
         }
-
         return dp[n];
 
     }

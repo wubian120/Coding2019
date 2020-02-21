@@ -3,7 +3,6 @@ package cn.bw.leetcode.sample;
 public class A44通配符匹配s {
 
 
-
     ///https://leetcode-cn.com/problems/wildcard-matching/solution/shuang-zhi-zhen-he-dong-tai-gui-hua-by-powcai/
     public boolean isMatch2(String s, String p) {
 
@@ -33,7 +32,6 @@ public class A44通配符匹配s {
     }
 
 
-
     //dp 解法
     public boolean isMatch(String text, String pattern) {
         // 多一维的空间，因为求 dp[len - 1][j] 的时候需要知道 dp[len][j] 的情况，
@@ -57,7 +55,6 @@ public class A44通配符匹配s {
         }
         return dp[0][0];
     }
-
 
 
     public boolean isMatch0(String text, String pattern) {
@@ -85,11 +82,6 @@ public class A44通配符匹配s {
         }
         return dp[0][0];
     }
-
-
-
-
-
 
 
 }
