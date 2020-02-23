@@ -7,7 +7,7 @@ package cn.bw.leetcode.prac.p202002;
  * @Date: 2020-02-09 07:54
  */
 
-public class A5最长回文子串p0 {
+public class A5最长回文子串p {
 
     public String longestPalindrome(String s) {
         if (s == null || s.length() == 0) {
