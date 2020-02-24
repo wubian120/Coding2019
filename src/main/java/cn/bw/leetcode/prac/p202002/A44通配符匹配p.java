@@ -1,13 +1,16 @@
 package cn.bw.leetcode.prac.p202002;
 
 /**
- * @ClassName : A44通配符匹配p3
- * @Author : Richard.Wu
- * @Date: 2020-02-21 08:46
+ * @ClassName : A44通配符匹配p0
  * @Description :
+ * @Author : Richard.Wu
+ * @Date: 2020-02-05 00:36
  */
 
-public class A44通配符匹配p3 {
+public class A44通配符匹配p {
+
+
+    //题目方法：
 
     public boolean isMatch(String s, String p) {
         int slen = s.length(), plen = p.length();
@@ -32,8 +35,10 @@ public class A44通配符匹配p3 {
                 }
             }
         }
-        return dp[slen][plen];
-    }
 
+        return dp[slen][plen];
+
+
+    }
 
 }

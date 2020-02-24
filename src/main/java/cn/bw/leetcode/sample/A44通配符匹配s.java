@@ -23,6 +23,7 @@ public class A44通配符匹配s {
                         || p.charAt(j - 1) == '?') {
                     dp[i][j] = dp[i - 1][j - 1];
                 } else if (p.charAt(j - 1) == '*') {
+                    /// 这个地方还需要一些解释
                     dp[i][j] = dp[i][j - 1] || dp[i - 1][j];
                 }
             }
