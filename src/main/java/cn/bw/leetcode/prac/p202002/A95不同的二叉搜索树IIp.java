@@ -9,9 +9,9 @@ import java.util.List;
  * @Description :
  * @Author : Richard.Wu
  * @Date: 2020-02-11 11:55
- *
- * 1.2020-02-24
- * 2.2020-02-25
+ * <p>
+ * 1.2020-02-24 prac
+ * 2.2020-02-25 review+1
  *
  */
 
@@ -29,18 +29,45 @@ public class A95不同的二叉搜索树IIp {
 
     public List<TreeNode> generateTrees(int n) {
 
+        if (n == 0) return Collections.emptyList();
+
+        return generate(1, n);
 
     }
 
+    private List<TreeNode> generate(int start, int end) {
+        List<TreeNode> tree = new LinkedList<>();
+        if (start > end){
+            tree.add(null);
+            return tree;
+        }
 
 
+        for (int i = start; i <= end; i++) {
+
+            List<TreeNode> leftSub = generate(start, i - 1);
+            List<TreeNode> rightSub = generate(i + 1, end);
+
+            for (TreeNode left : leftSub) {
+                for (TreeNode right : rightSub) {
+                    TreeNode root = new TreeNode(i);
+                    root.left = left;
+                    root.right = right;
+
+                    tree.add(root);
+                }
+            }
+        }
+
+        return tree;
+    }
 
 
-    public static void main(String[] args){
-        int n= 10;
+    public static void main(String[] args) {
+        int n = 10;
 
         A95不同的二叉搜索树IIp a = new A95不同的二叉搜索树IIp();
-        List<TreeNode> tree= a.generateTrees(n);
+        List<TreeNode> tree = a.generateTrees(n);
 
     }
 
