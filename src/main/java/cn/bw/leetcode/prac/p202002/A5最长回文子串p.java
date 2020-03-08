@@ -11,42 +11,38 @@ public class A5最长回文子串p {
 
     public String longestPalindrome(String s) {
 
+
         if (s == null || s.length() < 2) {
             return s;
         }
 
+        int begin = 0, maxlen = 0;
         int len = s.length();
-        int beginIndex = 0;
-        int maxLen = 0;
         boolean[][] dp = new boolean[len][len];
 
         for (int i = 0; i < len; i++) {
             dp[i][i] = true;
         }
 
-        for (int right = 0; right < len; right++) {
-            for (int left = 0; left < right; left++) {
+        for (int r = 0; r < len; r++) {
+            for (int l = 0; l < r; l++) {
+                if (s.charAt(r) == s.charAt(l)) {
+                    if (r > 0 && l < len - 1 && (dp[l + 1][r - 1] || r - l == 1)) {
+                        dp[l][r] = true;
 
-                if (s.charAt(right) == s.charAt(left)) {
-                    if (right > 0 && left < len - 1 && (dp[left + 1][right - 1] || right-left==1)) {
-                        dp[left][right] = true;
-
-                        if (maxLen < right - left + 1) {
-                            maxLen = right - left + 1;
-                            beginIndex = left;
+                        if (r - l + 1 > maxlen) {
+                            maxlen = r - l + 1;
+                            begin = l;
                         }
-
                     }
                 }
             }
         }
-
-        if (maxLen == 0 && beginIndex == 0) {
+        if (maxlen == 0 && begin == 0) {
             return "" + s.charAt(0);
         }
 
-        return s.substring(beginIndex, beginIndex + maxLen);
-
+        return s.substring(begin, begin + maxlen);
 
     }
 }
