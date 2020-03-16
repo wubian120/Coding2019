@@ -13,10 +13,11 @@ public class LeetcodeFileCounter {
 
     String pracPath = "/Users/richard.wu/coding/coding2019/src/main/java/cn/bw/leetcode/sample";
 
+    String aPath = "./src/main/java/cn/bw/leetcode/sample";
 
     public void pracSampleCodeFiles(){
 
-        int count= FilePathCount.filesCount(pracPath);
+        int count= FilePathCount.filesCount(aPath);
 
         System.out.println(count);
 
