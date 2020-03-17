@@ -16,43 +16,47 @@ public class A15三数之和p {
     public List<List<Integer>> threeSum(int[] nums) {
 
         List<List<Integer>> results = new LinkedList<>();
-        int len = nums.length;
+
         Arrays.sort(nums);
 
+        int len = nums.length;
         for (int i = 0; i < len - 2; i++) {
 
             if (i == 0 || (i > 0 && nums[i] != nums[i - 1])) {
-                int low = i + 1, high = len - 1, sum = 0 - nums[i];
-                while (low < high) {
+                int left=i+1, right=len-1, sum=0-nums[i];
 
+                while (left<right){
 
-                    if ((nums[low] + nums[high]) == sum) {
-                        results.add(Arrays.asList(nums[i], nums[low], nums[high]));
+                    if((nums[left]+nums[right])==sum){
+                        results.add(Arrays.asList(nums[i],nums[left],nums[right]));
 
-                        while (low < high && nums[low] == nums[low + 1]) {
-                            low++;
-                        }
-                        while (low < high && nums[high] == nums[high - 1]) {
-                            high--;
+                        while (left<right&& nums[left]==nums[left+1]){
+                            left++;
                         }
 
-                        low++;
-                        high--;
-                    } else if ((nums[low] + nums[high]) > sum) {
-                        high--;
-                    } else {
-                        low++;
+                        while (left<right && nums[right]==nums[right-1]){
+                            right--;
+                        }
+
+                        left++;
+                        right--;
+
+                    }else if((nums[left]+nums[right])>sum){
+                        right--;
+                    }else {
+                        left++;
                     }
 
                 }
-
 
             }
 
 
         }
 
+
         return results;
+
 
     }
 

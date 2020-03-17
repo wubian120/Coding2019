@@ -16,6 +16,7 @@ public class A15三数之和s {
     public List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> result = new LinkedList<>();
 
+        // 需要先排序
         Arrays.sort(nums);
         int len = nums.length;
         for (int i = 0; i < len - 2; i++) {
