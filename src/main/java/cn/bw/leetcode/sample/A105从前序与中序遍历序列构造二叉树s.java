@@ -68,4 +68,12 @@ public class A105从前序与中序遍历序列构造二叉树s {
     }
 
 
+    public static void main(String[] args){
+
+
+
+
+    }
+
+
 }

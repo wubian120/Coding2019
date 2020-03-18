@@ -17,6 +17,7 @@ public class B面0106字符串压缩s {
         //快慢前后双指针
         int l = 0, r = 1;
         while (r < len) {
+            /* 如果 不相等 则需要计算 长度*/
             if (S.charAt(r) != S.charAt(l)) {
                 sb.append(S.charAt(l));
                 sb.append((r - l) + "");

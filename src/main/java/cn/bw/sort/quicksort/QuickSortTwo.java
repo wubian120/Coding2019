@@ -44,6 +44,8 @@ public class QuickSortTwo {
             }
         }
 
+        /**重置 pivot    */
+        //start 是中间位置
         nums[left] = nums[start];
         nums[start] = pivot;
 
