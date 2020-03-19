@@ -2,20 +2,41 @@ package cn.bw.leetcode.sample;
 
 public class A59螺旋矩阵IIS {
     public int[][] generateMatrix(int n) {
-        int l = 0, r = n - 1, t = 0, b = n - 1;
-        int[][] mat = new int[n][n];
-        int num = 1, tar = n * n;
-        while(num <= tar){
-            for(int i = l; i <= r; i++) mat[t][i] = num++; // left to right.
-            t++;
-            for(int i = t; i <= b; i++) mat[i][r] = num++; // top to bottom.
-            r--;
-            for(int i = r; i >= l; i--) mat[b][i] = num++; // right to left.
-            b--;
-            for(int i = b; i >= t; i--) mat[i][l] = num++; // bottom to top.
-            l++;
+
+
+
+        int left = 0, right = n - 1, top = 0, bottom = n - 1;
+
+        int[][] matrix = new int[n][n];
+        int current = 1, total = n * n;
+        while (current <= total) {
+            //left to right
+            for (int i = left; i <= right; i++) {
+                matrix[top][i] = current++;
+            }
+            top++;
+
+            //top to bottom
+            for (int i = top; i <= bottom; i++) {
+                matrix[i][right] = current++;
+            }
+            right--;
+
+            //right to left
+            for (int i = right; i >= left; i--) {
+                matrix[bottom][i] = current++;
+            }
+            bottom--;
+            //bottom to top
+            for (int i = bottom; i >= top; i--) {
+                matrix[i][left] = current++;
+            }
+            left++;
+
         }
-        return mat;
+        return matrix;
+
+
     }
 
 }

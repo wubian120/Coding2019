@@ -1,5 +1,6 @@
 package cn.bw.leetcode.prac.p202002;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,32 +31,33 @@ public class A103二叉树的锯齿形层次遍历p {
 
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
 
-        List<List<Integer>> results = new LinkedList<>();
-        zigLevelOrder(root, 0, results);
-        return results;
+        if(root==null)return Collections.emptyList();
+        List<List<Integer>> results=new LinkedList<>();
+        handleZLevel(root,0,results);
 
+        return results;
     }
 
+    private void handleZLevel(TreeNode root, int level, List<List<Integer>> results){
 
-    private void zigLevelOrder(TreeNode root, int level, List<List<Integer>> results) {
+        if(root==null)return;
 
-        if (root != null) {
-            if (level == results.size()) {
-                results.add(new LinkedList<>());
-            }
-
-            if ((level & 1) == 0) {
-                results.get(level).add(root.val);
-            }
-
-            if ((level & 1) == 1) {
-                results.get(level).add(0, root.val);
-            }
-
-            zigLevelOrder(root.left, level + 1, results);
-            zigLevelOrder(root.right, level + 1, results);
+        if(results.size()==level){
+            results.add(new LinkedList<>());
         }
 
+        if((level&1)!=0){
+            results.get(level).add(0,root.val);
+        }else if((level&1)==0){
+            results.get(level).add(root.val);
+        }
+
+        handleZLevel(root.left,level+1,results);
+        handleZLevel(root.right,level+1,results);
+
     }
+
+
+
 
 }
