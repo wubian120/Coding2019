@@ -1,5 +1,7 @@
 package cn.bw.leetcode.sample;
 
+import java.util.Stack;
+
 /**
  * @ClassName : A98验证二叉搜索树s
  * @Description :
@@ -34,5 +36,27 @@ public class A98验证二叉搜索树s {
         return isValidBST(root.left, left, (long)root.val) &&
                 isValidBST(root.right, (long) root.val, right);
 
+    }
+
+
+    /** 中序遍历 版本  */
+    public boolean isValidBST2(TreeNode root) {
+        Stack<TreeNode> stack = new Stack();
+        double inorder = - Double.MAX_VALUE;
+
+        while (!stack.isEmpty() || root != null) {
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
+            }
+            root = stack.pop();
+            // If next element in inorder traversal
+            // is smaller than the previous one
+            // that's not BST.
+            if (root.val <= inorder) return false;
+            inorder = root.val;
+            root = root.right;
+        }
+        return true;
     }
 }

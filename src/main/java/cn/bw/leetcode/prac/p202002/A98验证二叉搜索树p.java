@@ -9,7 +9,7 @@ import java.rmi.activation.ActivationGroup_Stub;
  * @Description :
  */
 
-public class A98验证二叉搜索树p0 {
+public class A98验证二叉搜索树p {
 
     public class TreeNode {
         int val;
@@ -36,4 +36,5 @@ public class A98验证二叉搜索树p0 {
                     isValidBST(root.right,(long)root.val,right);
         }
     }
+    
 }
