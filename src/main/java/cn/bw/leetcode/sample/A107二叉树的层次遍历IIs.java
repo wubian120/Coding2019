@@ -1,17 +1,19 @@
-package cn.bw.leetcode.prac.p202002;
+package cn.bw.leetcode.sample;
 
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
- * @ClassName : A102p2
+ * @ClassName : A107二叉树的层次遍历IIs
  * @Author : Richard.Wu
- * @Date: 2020-02-19 07:56
+ * @Date: 2020-03-20 11:02
  * @Description :
+ * <p>
+ * 从上往下走，  从前往后插
  */
 
-public class A102p2 {
+public class A107二叉树的层次遍历IIs {
 
     public class TreeNode {
         int val;
@@ -23,21 +25,20 @@ public class A102p2 {
         }
     }
 
-    public List<List<Integer>> levelOrder(TreeNode root) {
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
 
         if (root == null) return Collections.emptyList();
 
         List<List<Integer>> results = new LinkedList<>();
 
-        List<TreeNode> treeNodes=new LinkedList<>();
-        treeNodes.add(root);
+        List<TreeNode> nodes = new LinkedList<>();
+        nodes.add(root);
 
-        while (!treeNodes.isEmpty()) {
-            List<Integer> levelVals=new LinkedList<>();
-            List<TreeNode> levelNodes=new LinkedList<>();
+        while (!nodes.isEmpty()) {
+            List<Integer> values = new LinkedList<>();
+            List<TreeNode> levelNodes = new LinkedList<>();
 
-            for(TreeNode cur:treeNodes){
-                levelVals.add(cur.val);
+            for (TreeNode cur : nodes) {
 
                 if(cur.left!=null){
                     levelNodes.add(cur.left);
@@ -46,10 +47,17 @@ public class A102p2 {
                     levelNodes.add(cur.right);
                 }
 
+                values.add(cur.val);
+
+
             }
-            results.add(levelVals);
-            treeNodes=levelNodes;
+
+            nodes = levelNodes;
+            results.add(0,values);
+
         }
+
         return results;
     }
+
 }

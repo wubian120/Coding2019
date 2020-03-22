@@ -42,6 +42,8 @@ public class A98验证二叉搜索树s {
     /** 中序遍历 版本  */
     public boolean isValidBST2(TreeNode root) {
         Stack<TreeNode> stack = new Stack();
+        //
+        //因为一些 极端 测试case 导致 用这个
         double inorder = - Double.MAX_VALUE;
 
         while (!stack.isEmpty() || root != null) {

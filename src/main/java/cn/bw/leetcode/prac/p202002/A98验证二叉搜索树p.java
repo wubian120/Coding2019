@@ -1,6 +1,7 @@
 package cn.bw.leetcode.prac.p202002;
 
 import java.rmi.activation.ActivationGroup_Stub;
+import java.util.Stack;
 
 /**
  * @ClassName : A98验证二叉搜索树p0
@@ -22,19 +23,29 @@ public class A98验证二叉搜索树p {
 
     public boolean isValidBST(TreeNode root) {
 
-        return isValidBST(root,Long.MIN_VALUE,Long.MAX_VALUE);
-    }
+        Stack<TreeNode> stack = new Stack<>();
+        double pre = -Double.MAX_VALUE;
 
-    private boolean isValidBST(TreeNode root, long left, long right){
+        while (!stack.isEmpty()|| root!=null){
 
-        if(root==null){
-            return true;
-        }else if(root.val<=left ||root.val>=right){
-            return false;
-        }else{
-            return isValidBST(root.left, left, (long)root.val)&&
-                    isValidBST(root.right,(long)root.val,right);
+            while (root!=null){
+                stack.push(root);
+                root=root.left;
+            }
+
+            root=stack.pop();
+            if(pre>=root.val)return false;
+
+            pre=root.val;
+            root=root.right;
+
         }
+        return true;
+
+
+
+
+
     }
-    
+
 }
