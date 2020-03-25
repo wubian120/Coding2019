@@ -23,40 +23,43 @@ public class PL105从前序和中序构造二叉树 {
 
     public TreeNode buildTree(int[] preorder, int[] inorder) {
 
-
-        return build(preorder,inorder,0,inorder.length-1);
-
+        if (preorder == null ||
+                inorder == null || preorder.length == 0 ||
+                inorder.length == 0 || inorder.length != preorder.length) {
+            return null;
+        }
+        return build(preorder, inorder, 0, preorder.length - 1);
     }
 
-    int index=0;
-    private TreeNode build(int[] preorder, int[] inorder, int left, int right){
+    int idx = 0;
 
-        if(left>right)return null;
+    private TreeNode build(int[] preorder, int[] inorder, int left, int right) {
+        if (left > right || idx >= inorder.length) return null;
 
-        int cur=searchInorder(inorder,preorder[index], left,right);
 
-        TreeNode root=new TreeNode(inorder[cur]);
-        index++;
-        root.left=build(preorder, inorder, left, cur-1);
-        root.right=build(preorder, inorder, cur+1, right);
+        int inInde=search(inorder,left,right,preorder[idx]);
+
+        idx++;
+        TreeNode root=new TreeNode(inorder[inInde]);
+
+        root.left=build(preorder, inorder, left, inInde-1);
+        root.right=build(preorder, inorder, inInde+1, right);
 
         return root;
 
     }
 
+    private int search(int[] inorder, int left, int right, int data) {
 
-    private int searchInorder(int[] inorder, int data, int s, int e){
-
-        for(int i=e;i>=s;i--){
+        for(int i=right;i>=left;i--){
             if(inorder[i]==data){
                 return i;
             }
         }
-        //找不到
         return -1;
+
+
     }
-
-
 
 
 }
