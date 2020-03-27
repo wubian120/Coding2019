@@ -22,7 +22,9 @@ public class A15三数之和s {
         for (int i = 0; i < len - 2; i++) {
 
             if (i == 0 || (i > 0 && nums[i] != nums[i - 1])) {
+
                 int low = i + 1, high = len - 1, sum = 0 - nums[i];
+
                 while (low < high) {
 
                     if ((nums[low] + nums[high]) == sum) {

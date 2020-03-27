@@ -14,10 +14,23 @@ public class BlockingQueueMTwo {
 
     private final BlockingQueue<Task> queue;
 
-    public BlockingQueueMTwo(int capacity){
+    public BlockingQueueMTwo(int capacity) {
         queue = new LinkedBlockingDeque<>(capacity);
 
 
+    }
+
+
+    public static class Task {
+        private int id;
+
+        public Task(int id){
+            this.id=id;
+        }
+
+        public int getId() {
+            return id;
+        }
     }
 
 }
