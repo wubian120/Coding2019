@@ -23,6 +23,11 @@ public class A144二叉树的前序遍历s {
         }
     }
 
+    /***
+     *
+     * @param root
+     * @return
+     */
     public List<Integer> preorderTraversal(TreeNode root) {
 
 
@@ -48,6 +53,30 @@ public class A144二叉树的前序遍历s {
         return results;
     }
 
+
+    public List<Integer> preorderTraversal1(TreeNode root) {
+
+        List<Integer> results = new LinkedList<>();
+        if(root==null){
+            return results;
+        }
+        preorder(root,results);
+
+        return results;
+    }
+
+    public void preorder(TreeNode root, List<Integer> results){
+
+        if(root ==null){
+            return;
+        }
+
+        results.add(root.val);
+        preorder(root.left,results);
+        preorder(root.right,results);
+
+
+    }
 
 
 

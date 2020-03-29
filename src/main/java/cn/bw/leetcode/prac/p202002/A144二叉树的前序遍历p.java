@@ -1,16 +1,19 @@
 package cn.bw.leetcode.prac.p202002;
 
-import java.rmi.activation.ActivationGroup_Stub;
+import cn.bw.leetcode.sample.A144二叉树的前序遍历s;
+
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Stack;
 
 /**
- * @ClassName : A98验证二叉搜索树p0
+ * @ClassName : A144二叉树的前序遍历p
  * @Author : Richard.Wu
- * @Date: 2020-02-12 12:44
+ * @Date: 2020-03-29 23:11
  * @Description :
  */
 
-public class A98验证二叉搜索树p {
+public class A144二叉树的前序遍历p {
 
     public class TreeNode {
         int val;
@@ -22,28 +25,27 @@ public class A98验证二叉搜索树p {
         }
     }
 
-    public boolean isValidBST(TreeNode root) {
+
+    public List<Integer> preorderTraversal(TreeNode root) {
 
         Stack<TreeNode> stack = new Stack<>();
-
-        double pre = -Double.MAX_VALUE;
+        List<Integer> results = new LinkedList<>();
 
         TreeNode cur = root;
         while (cur != null || !stack.isEmpty()) {
+
             while (cur !=null){
+                results.add(cur.val);
                 stack.push(cur);
                 cur = cur.left;
             }
+
             cur = stack.pop();
-            if(cur.val<=pre){
-                return false;
-            }
-            pre = cur.val;
             cur = cur.right;
+
         }
 
-        return true;
-
+        return results;
     }
 
 }
