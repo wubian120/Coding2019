@@ -12,7 +12,6 @@ import java.util.List;
  * <p>
  * 1.2020-02-24 prac
  * 2.2020-02-25 review+1
- *
  */
 
 public class A95不同的二叉搜索树IIp {
@@ -29,19 +28,20 @@ public class A95不同的二叉搜索树IIp {
 
     public List<TreeNode> generateTrees(int n) {
 
-        if (n == 0) return Collections.emptyList();
+        if(n==0){
+            return Collections.emptyList();
+        }
 
-        return generate(1, n);
+        return generate(1,n);
 
     }
 
-    private List<TreeNode> generate(int start, int end) {
+    List<TreeNode> generate(int start, int end) {
         List<TreeNode> tree = new LinkedList<>();
-        if (start > end){
+        if (start > end) {
             tree.add(null);
             return tree;
         }
-
 
         for (int i = start; i <= end; i++) {
 
@@ -50,16 +50,17 @@ public class A95不同的二叉搜索树IIp {
 
             for (TreeNode left : leftSub) {
                 for (TreeNode right : rightSub) {
-                    TreeNode root = new TreeNode(i);
-                    root.left = left;
-                    root.right = right;
-
-                    tree.add(root);
+                    TreeNode node = new TreeNode(i);
+                    node.left = left;
+                    node.right = right;
+                    tree.add(node);
                 }
             }
+
         }
 
         return tree;
+
     }
 
 

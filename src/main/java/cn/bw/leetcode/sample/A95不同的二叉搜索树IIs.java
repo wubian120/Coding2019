@@ -1,15 +1,13 @@
 package cn.bw.leetcode.sample;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * @ClassName : A95不同的二叉搜索树IIs
  * @Description : leetcode 95 不同的二叉搜索树II
- *
- *
- *
  * @Author : Richard.Wu
  * @Date: 2020-01-23 23:58
  */
@@ -27,58 +25,40 @@ public class A95不同的二叉搜索树IIs {
     }
 
     public List<TreeNode> generateTrees(int n) {
-        if (n == 0) {
-            return new ArrayList<>();
-        }
 
-        return generateTrees(0, n);
+        if(n==0){
+            return Collections.EMPTY_LIST;
+        }
+        return generate(1,n);
+
     }
 
-    public List<TreeNode> generateTrees(int start, int end) {
+    private List<TreeNode> generate(int start, int end){
 
-        List<TreeNode> trees = new LinkedList<>();
-        if (start == end) {
-            trees.add(null);
-            return trees;
+        List<TreeNode> tree = new LinkedList<>();
+        if(start>end){
+            tree.add(null);
+            return tree;
         }
 
-        if (start + 1 == end) {
-            TreeNode one = new TreeNode(start + 1);
-            trees.add(one);
-        } else if (start + 2 == end) {
-            TreeNode fstOne = new TreeNode(start + 1);
-            TreeNode fstOnePlus = new TreeNode(start + 2);
-            fstOne.right = fstOnePlus;
-            trees.add(fstOne);
+        // 注意： 边界， i<=end
+        for(int i=start;i<=end;i++){
+            List<TreeNode> leftSub=generate(start,i-1);
+            List<TreeNode> rightSub=generate(i+1,end);
 
-            TreeNode sndOne = new TreeNode(start + 1);
-            TreeNode sndOnePlus = new TreeNode(start + 2);
-            sndOnePlus.left = sndOne;
-            trees.add(sndOnePlus);
+            for(TreeNode left:leftSub){
+                for(TreeNode right:rightSub){
 
-        } else {
+                    TreeNode cur=new TreeNode(i);
+                    cur.left=left;
+                    cur.right=right;
 
-            for (int i = start; i < end; i++) {
-                List<TreeNode> leftSubTree = generateTrees(start, i);
-                List<TreeNode> rightSubTree = generateTrees(i + 1, end);
-
-                int leftSize = leftSubTree.size();
-                int rightSize = rightSubTree.size();
-
-                for (int l = 0; l < leftSize; l++) {
-                    for (int r = 0; r < rightSize; r++) {
-                        TreeNode root = new TreeNode(i + 1);
-                        root.left = leftSubTree.get(l);
-                        root.right = rightSubTree.get(r);
-                        trees.add(root);
-                    }
+                    tree.add(cur);
                 }
-
             }
-
-
         }
-        return trees;
 
+
+        return tree;
     }
 }

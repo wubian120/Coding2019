@@ -49,6 +49,7 @@ public class A106从中序与后序遍历构造二叉树s {
         //
         root.left= build(inorder, is, cur-1, postorder, ps, ps+cur-is-1);
 
+        //注意  pe-1;
         root.right = build(inorder, cur+1, ie, postorder, ps+cur-is, pe-1);
 
         return root;
