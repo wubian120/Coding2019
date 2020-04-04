@@ -18,7 +18,9 @@ public class A332重新安排行程s {
 
         Map<String, List<String>> stopsMap = new HashMap<>();
         for (List<String> ticket : tickets) {
-            List<String> stops = stopsMap.computeIfAbsent(ticket.get(0), t -> new LinkedList<>());
+            List<String> stops
+                    = stopsMap.computeIfAbsent(ticket.get(0),
+                    t -> new LinkedList<>());
             stops.add(ticket.get(1));
         }
 
@@ -31,7 +33,9 @@ public class A332重新安排行程s {
         return results;
     }
 
-    private static void dfs(Map<String, List<String>> stopMap, String start, List<String> result) {
+    private static void dfs(Map<String, List<String>> stopMap,
+                            String start,
+                            List<String> result) {
 
         List<String> stops = stopMap.get(start);
         while (stops != null && stops.size() > 0) {

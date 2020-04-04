@@ -12,43 +12,41 @@ import java.util.*;
 public class PL332重新安排行程 {
 
     public List<String> findItinerary(List<List<String>> tickets) {
-
-        if(tickets==null||tickets.size()==0){
+        if(tickets==null||tickets.isEmpty()){
             return Collections.emptyList();
         }
 
-        List<String> results=new LinkedList<>();
-
-        Map<String,List<String>> stopMap=new HashMap<>();
-
+        Map<String,List<String>> stopmap = new HashMap<>();
         for(List<String> ticket:tickets){
 
-            List<String> stops=stopMap.computeIfAbsent(ticket.get(0),t->new LinkedList<>());
+            List<String> stops
+                    = stopmap.computeIfAbsent(ticket.get(0),
+                            s->new LinkedList<>());
             stops.add(ticket.get(1));
         }
 
-        stopMap.values().forEach(t->t.sort(String::compareTo));
+        stopmap.values().forEach(t->t.sort(String::compareTo));
 
+        List<String> results = new LinkedList<>();
 
-
-
-        dfs(stopMap,"JFK",results);
-
+        dfs(stopmap,"JFK",results);
 
         return results;
 
+
     }
 
-    private void dfs(Map<String,List<String>> stopsMap, String start, List<String> results){
+    private void dfs(Map<String, List<String>> stopmap,
+                     String start,
+                     List<String> results) {
 
-        List<String> stops = stopsMap.get(start);
-
-        while (stops!=null&&!stops.isEmpty()){
-            String nextStop = stops.remove(0);
-            dfs(stopsMap,nextStop,results);
+        List<String> stops = stopmap.get(start);
+        while (stops != null && stops.size() > 0) {
+            String end = stops.remove(0);
+            dfs(stopmap, end, results);
         }
-
-        results.add(0,start);
+        results.add(0, start);
     }
+
 
 }
