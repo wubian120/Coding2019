@@ -12,44 +12,45 @@ public class PQuickSort {
     public static void sort(int[] nums) {
         if (nums == null || nums.length == 0) return;
 
-        quickSort(nums, 0, nums.length - 1);
+        quickSort(nums,0,nums.length-1);
 
     }
 
-    private static void quickSort(int[] num, int left, int right) {
+    private static void quickSort(int[] nums, int left, int right){
+        if(left>right)return;
 
-        if (left > right) return;
+        int pivot = nums[left];
 
-        int start = left, end = right;
-        int pivot = num[left];
+        int start = left, end=right;
 
-        while (start != end) {
-
-            while (start < end && pivot <= num[end]) {
+        while (start!=end){
+            while (start<end && pivot<=nums[end]){
                 end--;
             }
 
-            while (start < end && num[start] <= pivot) {
+            while (start<end && nums[start]<=pivot){
                 start++;
             }
 
-            if (start < end) {
-                int t = num[start];
-                num[start] = num[end];
-                num[end] = t;
+            if(start<end){
+                int t = nums[start];
+                nums[start]=nums[end];
+                nums[end]=t;
             }
-
         }
-        //把中间
-        num[left] = num[start];
 
-        num[start] = pivot;
+        nums[left]=nums[start];
+        nums[start]=pivot;
 
-        quickSort(num, left, start - 1);
-        quickSort(num, start + 1, right);
-
-
+        quickSort(nums,left, start-1);
+        quickSort(nums,start+1, right);
     }
+
+
+
+
+
+
 
 
     public static void main(String... args) {

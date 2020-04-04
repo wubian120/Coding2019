@@ -36,32 +36,35 @@ public class A95不同的二叉搜索树IIp {
 
     }
 
-    List<TreeNode> generate(int start, int end) {
+    private List<TreeNode> generate(int start, int end){
         List<TreeNode> tree = new LinkedList<>();
-        if (start > end) {
+        if(start>end){
             tree.add(null);
             return tree;
         }
 
-        for (int i = start; i <= end; i++) {
+        for(int i=start;i<=end;i++){
+            List<TreeNode> leftSub=generate(start,i-1);
+            List<TreeNode> rightSub = generate(i+1,end);
 
-            List<TreeNode> leftSub = generate(start, i - 1);
-            List<TreeNode> rightSub = generate(i + 1, end);
+            for(TreeNode left:leftSub){
+                for(TreeNode right:rightSub){
 
-            for (TreeNode left : leftSub) {
-                for (TreeNode right : rightSub) {
-                    TreeNode node = new TreeNode(i);
-                    node.left = left;
-                    node.right = right;
-                    tree.add(node);
+                    TreeNode root = new TreeNode(i);
+                    root.left=left;
+                    root.right = right;
+
+                    tree.add(root);
+
+
                 }
             }
-
         }
 
         return tree;
-
     }
+
+
 
 
     public static void main(String[] args) {
