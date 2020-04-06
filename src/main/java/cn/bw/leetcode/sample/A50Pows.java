@@ -21,16 +21,29 @@ public class A50Pows {
         if (n < 2) {
             return x;
         }
-        // 2 准备数据
+
         // 3 子问题
         double sub = divideGenerate(x, n / 2);
+
         // 4 合并
-        // 5 清理
+
         if (n % 2 == 0) {
             return sub * sub;
         } else {
             return sub * sub * x;
         }
+    }
+
+    public static void main(String[] args){
+
+        int n =10;
+        double x = 2.1;
+
+        A50Pows a = new A50Pows();
+        double result = a.myPow(x, n);
+
+
+
     }
 
 }
