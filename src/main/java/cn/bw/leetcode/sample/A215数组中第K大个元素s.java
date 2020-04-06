@@ -122,7 +122,8 @@ public class A215数组中第K大个元素s {
         int k =2;
 
         A215数组中第K大个元素s a = new A215数组中第K大个元素s();
-        int result = a.findKthLargestHeap(nums,k);
+//        int result = a.findKthLargestHeap(nums,k);
+        int result = a.findKthLargest(nums,k);
 //        int result = a.findKthLargestTwo(nums,k);
 
 //        System.out.println(result);
