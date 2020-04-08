@@ -29,51 +29,60 @@ public class A215数组中第K个最大元素p {
 
         int len = nums.length;
 
-        return quickSelect(nums,0,len-1, len-k);
+        return quickSelect(nums,0,len-1,len-k);
+
     }
 
-    private int quickSelect(int[] nums, int left, int right, int kSmall) {
-        if (left == right) {
+    private int quickSelect(int[] nums, int left, int right, int kSmall){
+
+        if(left==right){
             return nums[left];
         }
 
         Random random = new Random();
-
-        int pivotIdx = left + random.nextInt(right - left);
+        int pivotIdx = left+random.nextInt(right-left);
 
         pivotIdx = partition(nums,left,right,pivotIdx);
 
-        if(kSmall==pivotIdx){
+        if(pivotIdx==kSmall){
             return nums[kSmall];
         }else if(kSmall<pivotIdx){
-            return quickSelect(nums, left, pivotIdx-1, kSmall);
-
+            return quickSelect(nums,left,pivotIdx-1,kSmall);
         }else {
-            return quickSelect(nums, pivotIdx+1, right, kSmall);
+            return quickSelect(nums,pivotIdx+1, right,kSmall);
         }
-
 
     }
 
-    private int partition(int[] nums, int left, int right, int pivotIdx) {
+    private int partition(int[] nums, int left, int right, int pivotIdx){
         int pivot = nums[pivotIdx];
 
-        swap(nums,pivotIdx, right);
-        int idx = left;
+        swap(nums, pivotIdx, right);
 
-        for(int i=left;i<=right;i++){
+        int cur = left;
+
+        for(int i=left;i<=right; i++){
+
+            //把<pivot的 都换到左边
             if(nums[i]<pivot){
-                swap(nums, idx, i);
-                idx++;
+                swap(nums, cur, i);
+                cur++;
             }
         }
+        //归位
+        swap(nums,cur, right);
 
-        swap(nums,idx, right);
-
-        return idx;
-
+        return cur;
 
     }
+
+
+
+
+
+
+
+
 
     private void swap(int[] nums, int i, int j) {
         int t = nums[i];

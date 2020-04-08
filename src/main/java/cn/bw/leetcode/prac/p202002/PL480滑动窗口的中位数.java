@@ -14,50 +14,48 @@ public class PL480滑动窗口的中位数 {
 
 
     public double[] medianSlidingWindow(int[] nums, int k) {
+        //大顶堆
+        PriorityQueue<Integer> small =
+                new PriorityQueue<>(Comparator.reverseOrder());
 
-        PriorityQueue<Integer> smaller
-                = new PriorityQueue<>(Comparator.reverseOrder());
-
-        PriorityQueue<Integer> bigger = new PriorityQueue<>();
+        //小顶堆
+        PriorityQueue<Integer> big =
+                new PriorityQueue<>();
 
         int len = nums.length;
         int n = len - k + 1;
-
         double[] results = new double[n];
 
         for (int i = 0; i < len; i++) {
 
-            if (smaller.isEmpty() || smaller.peek() < nums[i]) {
-                bigger.offer(nums[i]);
+            int toAdd = nums[i];
+
+            if (small.isEmpty() || small.peek() < toAdd) {
+                big.offer(toAdd);
             } else {
-                smaller.offer(nums[i]);
+                small.offer(toAdd);
             }
 
-            while (smaller.size() > bigger.size() + 1) {
-                bigger.offer(smaller.poll());
+            while (small.size() > big.size() + 1) {
+                big.offer(small.poll());
             }
 
-            while (bigger.size() > smaller.size()) {
-                smaller.offer(bigger.poll());
+            while (small.size() < big.size()) {
+                small.offer(big.poll());
             }
-
 
             if (i - k + 1 >= 0) {
+                results[i - k + 1] =
+                        small.size() == big.size() ?
+                                0.5 * ((long)small.peek() + (long)big.peek()) :
+                                small.peek();
 
-                if (smaller.size() == bigger.size()) {
-                    results[i - k + 1] = 0.5 * ((long)smaller.peek() + (long)bigger.peek());
+                int toRemove = nums[i - k + 1];
+                if (toRemove <= small.peek()) {
+                    small.remove(toRemove);
                 } else {
-                    results[i - k + 1] = smaller.peek();
+                    big.remove(toRemove);
                 }
-
-                int toRemove = nums[i-k+1];
-                if(toRemove<=smaller.peek()){
-                    smaller.remove(toRemove);
-                }else {
-                    bigger.remove(toRemove);
-                }
-
-
             }
 
         }

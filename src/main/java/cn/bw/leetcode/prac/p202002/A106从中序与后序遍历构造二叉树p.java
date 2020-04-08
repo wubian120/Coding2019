@@ -29,46 +29,49 @@ public class A106从中序与后序遍历构造二叉树p {
     public TreeNode buildTree(int[] inorder, int[] postorder) {
 
 
-        if (inorder == null ||
-                postorder == null ||
-                inorder.length == 0 ||
-                postorder.length == 0)
-        {
+        if(inorder==null||
+        postorder==null){
             return null;
         }
 
-            return build(inorder,0,inorder.length-1,postorder, 0,postorder.length-1);
+        return build(inorder,0, inorder.length-1,
+                postorder,0, postorder.length-1);
 
     }
 
 
-    private TreeNode build(int[] inorder, int is, int ie, int[] postorder, int ps, int pe) {
+    private TreeNode build(int[] inorder, int is, int ie,
+                           int[] postorder, int ps, int pe){
 
-        if (is > ie || ps > pe) {
+        if(is>ie||ps>pe){
             return null;
         }
 
-        int idx = search(inorder, postorder[pe]);
+        int curIdx=search(inorder, postorder[pe]);
 
-        TreeNode root = new TreeNode(inorder[idx]);
+        TreeNode root = new TreeNode(inorder[curIdx]);
 
-        root.left = build(inorder, is, idx - 1, postorder, ps, ps + idx - is - 1);
-        root.right = build(inorder, idx + 1, ie, postorder, ps + idx - is, pe - 1);
+        root.left=build(inorder,is, curIdx-1, postorder,ps,ps+curIdx-is-1);
+        root.right = build(inorder, curIdx+1, ie, postorder, ps+curIdx-is, pe-1);
 
         return root;
+
     }
 
 
-    private int search(int[] inorder, int data) {
 
-        for (int i = 0; i < inorder.length; i++) {
-            if (inorder[i] == data) {
-                return i;
-            }
+    private int search(int[] inorder, int data){
+
+        int i=0;
+        while (inorder[i]!=data){
+            i++;
         }
-        return -1;
 
+        return i;
     }
+
+
+
 
 
 }
