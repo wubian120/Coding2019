@@ -84,14 +84,15 @@ public class A215数组中第K大个元素s {
 
 
     public int findKthLargestHeap(int[] nums, int k) {
-        // init heap 'the smallest element first'
+        //小顶堆
         PriorityQueue<Integer> heap =
-                new PriorityQueue<Integer>(Comparator.reverseOrder());
+                new PriorityQueue<Integer>();
 
-        // keep k largest elements in the heap
+        //遍历
         for (int n: nums) {
             heap.add(n);
             if (heap.size() > k)
+                //把 小的都弹出去
                 heap.poll();
         }
 
@@ -122,11 +123,18 @@ public class A215数组中第K大个元素s {
         int k =2;
 
         A215数组中第K大个元素s a = new A215数组中第K大个元素s();
-//        int result = a.findKthLargestHeap(nums,k);
-        int result = a.findKthLargest(nums,k);
+        int result = a.findKthLargestHeap(nums,k);
+//        int result = a.findKthLargest(nums,k);
 //        int result = a.findKthLargestTwo(nums,k);
 
 //        System.out.println(result);
+
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+
+        for(int i:nums){
+            pq.add(i);
+        }
+
 
         System.out.println("end");
 

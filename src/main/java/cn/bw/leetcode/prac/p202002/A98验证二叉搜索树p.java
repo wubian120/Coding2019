@@ -24,25 +24,27 @@ public class A98验证二叉搜索树p {
 
     public boolean isValidBST(TreeNode root) {
 
-        Stack<TreeNode> stack = new Stack<>();
+      Stack<TreeNode> stack = new Stack<>();
 
-        double pre = -Double.MAX_VALUE;
+      double inorder=-Double.MAX_VALUE;
 
-        TreeNode cur = root;
-        while (cur != null || !stack.isEmpty()) {
-            while (cur !=null){
-                stack.push(cur);
-                cur = cur.left;
-            }
-            cur = stack.pop();
-            if(cur.val<=pre){
-                return false;
-            }
-            pre = cur.val;
-            cur = cur.right;
-        }
+      while (!stack.isEmpty()||root!=null){
 
-        return true;
+          while (root!=null){
+              stack.push(root);
+              root=root.left;
+          }
+
+          root=stack.pop();
+
+          if(root.val<=inorder){
+              return false;
+          }
+          inorder = root.val;
+          root = root.right;
+      }
+
+      return true;
 
     }
 

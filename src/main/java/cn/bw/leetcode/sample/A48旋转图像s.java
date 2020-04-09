@@ -23,7 +23,7 @@ public class A48旋转图像s {
             }
         }
         // 左右 翻转 每一行
-        //j < n/2 对角线下半部分
+        //j < n/2  一行的前半边
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n / 2; j++) {
                 int tmp = matrix[i][j];

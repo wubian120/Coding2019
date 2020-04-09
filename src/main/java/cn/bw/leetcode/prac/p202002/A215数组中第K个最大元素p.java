@@ -3,6 +3,8 @@ package cn.bw.leetcode.prac.p202002;
 import cn.bw.leetcode.sample.A215数组中第K大个元素s;
 import com.sun.scenario.effect.impl.sw.java.JSWColorAdjustPeer;
 
+import java.util.Comparator;
+import java.util.PriorityQueue;
 import java.util.Random;
 
 /**
@@ -16,65 +18,69 @@ public class A215数组中第K个最大元素p {
 
     public int findKthLargestHeap(int[] nums, int k) {
 
-        int len = nums.length;
+        PriorityQueue<Integer> queue
+                = new PriorityQueue<>();
+
+        for(int i:nums){
+            queue.add(i);
+
+            if(queue.size()>k){
+                queue.poll();
+            }
+        }
 
 
-        return 0;
+        return queue.poll();
 
 
     }
 
 
     public int findKthLargestSelect(int[] nums, int k) {
-
-        int len = nums.length;
+        int len=nums.length;
 
         return quickSelect(nums,0,len-1,len-k);
 
     }
 
-    private int quickSelect(int[] nums, int left, int right, int kSmall){
 
+    private int quickSelect(int[] nums, int left, int right, int ksmall){
         if(left==right){
             return nums[left];
         }
 
-        Random random = new Random();
-        int pivotIdx = left+random.nextInt(right-left);
+        Random ran = new Random();
+        int pivotIdx = left + ran.nextInt(right-left);
 
         pivotIdx = partition(nums,left,right,pivotIdx);
-
-        if(pivotIdx==kSmall){
-            return nums[kSmall];
-        }else if(kSmall<pivotIdx){
-            return quickSelect(nums,left,pivotIdx-1,kSmall);
+        if(pivotIdx==ksmall){
+            return nums[pivotIdx];
+        }else if(ksmall<pivotIdx){
+            return quickSelect(nums,left,pivotIdx-1,ksmall);
         }else {
-            return quickSelect(nums,pivotIdx+1, right,kSmall);
+            return quickSelect(nums,pivotIdx+1,right,ksmall);
         }
+
 
     }
 
     private int partition(int[] nums, int left, int right, int pivotIdx){
         int pivot = nums[pivotIdx];
 
-        swap(nums, pivotIdx, right);
+        swap(nums,pivotIdx, right);
 
-        int cur = left;
-
-        for(int i=left;i<=right; i++){
-
-            //把<pivot的 都换到左边
+        int idx = left;
+        for(int i=left;i<=right;i++){
             if(nums[i]<pivot){
-                swap(nums, cur, i);
-                cur++;
+                swap(nums, i, idx);
+                idx++;
             }
         }
-        //归位
-        swap(nums,cur, right);
-
-        return cur;
-
+        swap(nums,idx,right);
+        return idx;
     }
+
+
 
 
 

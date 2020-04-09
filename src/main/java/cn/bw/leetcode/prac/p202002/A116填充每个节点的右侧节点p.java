@@ -1,5 +1,8 @@
 package cn.bw.leetcode.prac.p202002;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * @ClassName : A116填充每个节点的右侧节点
  * @Author : Richard.Wu
@@ -16,7 +19,8 @@ public class A116填充每个节点的右侧节点p {
         public Node right;
         public Node next;
 
-        public Node() {}
+        public Node() {
+        }
 
         public Node(int _val) {
             val = _val;
@@ -28,28 +32,39 @@ public class A116填充每个节点的右侧节点p {
             right = _right;
             next = _next;
         }
-    };
+    }
+
+    ;
 
 
     public Node connect(Node root) {
 
-        Node pre = root;
+        if (root == null) return null;
 
-        while (pre !=null){
+        Queue<Node> queue = new LinkedList<>();
 
-            Node cur = pre;
+        queue.offer(root);
 
-            while (cur !=null){
+        while (!queue.isEmpty()) {
+            Node pre = null;
+
+            int size = queue.size();
+            for(int i=0;i<size;i++){
+                Node cur = queue.poll();
+                if(i>0){
+                    pre.next = cur;
+                }
+                pre = cur;
                 if(cur.left!=null){
-                    cur.left.next = cur.right;
-                }
+                    queue.offer(cur.left);
 
-                if(cur.right!=null &&cur.next!=null){
-                    cur.right.next = cur.next.left;
                 }
-                cur = cur.next;
+                if(cur.right!=null){
+                    queue.offer(cur.right);
+                }
             }
-            pre = pre.left;
+
+
         }
 
         return root;
