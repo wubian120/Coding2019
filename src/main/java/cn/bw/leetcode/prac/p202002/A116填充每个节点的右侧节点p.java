@@ -33,26 +33,27 @@ public class A116填充每个节点的右侧节点p {
 
     public Node connect(Node root) {
 
-        Node level = root;
+        Node pre = root;
 
-        while (level!=null){
+        while (pre !=null){
 
-            Node cur = level;
-            while (cur!=null){
+            Node cur = pre;
+
+            while (cur !=null){
                 if(cur.left!=null){
                     cur.left.next = cur.right;
                 }
 
-                if(cur.right!=null&& cur.next!=null){
+                if(cur.right!=null &&cur.next!=null){
                     cur.right.next = cur.next.left;
                 }
-                //往右走
                 cur = cur.next;
             }
-            //往下走
-            level = level.left;
+            pre = pre.left;
         }
+
         return root;
+
     }
 
 

@@ -12,26 +12,26 @@ public class A48旋转图像p {
 
     public void rotate(int[][] matrix) {
 
-        int row = matrix.length;
+       int n = matrix.length;
+       for(int row=0;row<n;row++){
+           for(int col=row;col<n;col++){
 
-        for(int i=0;i<row;i++){
-            for(int j=i;j<row;j++){
+               int t = matrix[row][col];
+               matrix[row][col]=matrix[col][row];
+               matrix[col][row]=t;
 
-                int t = matrix[j][i];
-                matrix[j][i]=matrix[i][j];
-                matrix[i][j]=t;
+           }
+       }
 
-            }
-        }
 
-        for(int i=0;i<row;i++){
-            for(int j=0;j<row/2;j++){
-                int t = matrix[i][j];
-                matrix[i][j]=matrix[i][row-j-1];
-                matrix[i][row-j-1]=t;
+       for(int row=0;row<n;row++){
+           for(int col=0;col<n/2;col++){
 
-            }
-        }
+               int t = matrix[row][col];
+               matrix[row][col]=matrix[row][n-col-1];
+               matrix[row][n-col-1]=t;
+           }
+       }
 
     }
 

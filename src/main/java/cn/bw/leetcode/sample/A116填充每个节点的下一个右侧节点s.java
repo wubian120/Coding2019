@@ -40,8 +40,10 @@ public class A116填充每个节点的下一个右侧节点s {
                 if(cur.right != null && cur.next != null){
                     cur.right.next = cur.next.left;
                 }
+                //平着往右走
                 cur = cur.next;
             }
+            //往下 往左走
             pre = pre.left;
         }
         return root;

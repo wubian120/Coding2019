@@ -10,13 +10,12 @@ package cn.bw.leetcode.prac.p202002;
 public class A50powp {
 
     public double myPow(double x, int n) {
-        if(n==0){
-            return 1;
-        }
 
-        double result=divide(x,Math.abs((long)n));
+        if (n == 0) return 1;
 
-        return n>=0?result:1/result;
+        double value = divide(x, Math.abs((long) n));
+
+        return n >= 0 ? value : 1 / value;
 
 
     }
@@ -30,11 +29,9 @@ public class A50powp {
 
         if (n % 2 == 0) {
             return sub * sub;
-
         } else {
             return sub * sub * x;
         }
-
     }
 
 
