@@ -17,7 +17,8 @@ public class LeetcodeFileCounter {
 
     public void pracSampleCodeFiles(){
 
-        int count= FilePathCount.filesCount(aPath);
+//        int count= FilePathCount.filesCount(aPath);
+        int count= FilePathCount.filesCount(pracPath);
 
         System.out.println(count);
 

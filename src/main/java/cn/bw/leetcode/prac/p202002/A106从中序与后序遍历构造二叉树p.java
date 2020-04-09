@@ -7,10 +7,8 @@ import cn.bw.leetcode.sample.A106从中序与后序遍历构造二叉树s;
  * @Author : Richard.Wu
  * @Date: 2020-03-25 16:36
  * @Description :
- *
+ * <p>
  * 2020-03-27
- *
- *
  */
 
 public class A106从中序与后序遍历构造二叉树p {
@@ -28,50 +26,36 @@ public class A106从中序与后序遍历构造二叉树p {
 
     public TreeNode buildTree(int[] inorder, int[] postorder) {
 
-
-        if(inorder==null||
-        postorder==null){
+        if(inorder==null||postorder==null){
             return null;
         }
+        return build(inorder,postorder,0,inorder.length-1, 0,postorder.length-1);
 
-        return build(inorder,0, inorder.length-1,
-                postorder,0, postorder.length-1);
 
     }
 
+    private TreeNode build(int[] inorder, int[] postorder, int is, int ie, int ps, int pe) {
 
-    private TreeNode build(int[] inorder, int is, int ie,
-                           int[] postorder, int ps, int pe){
-
-        if(is>ie||ps>pe){
+        if (is > ie || ps > pe) {
             return null;
         }
 
-        int curIdx=search(inorder, postorder[pe]);
+        int curIdx = search(inorder, postorder[pe]);
 
         TreeNode root = new TreeNode(inorder[curIdx]);
-
-        root.left=build(inorder,is, curIdx-1, postorder,ps,ps+curIdx-is-1);
-        root.right = build(inorder, curIdx+1, ie, postorder, ps+curIdx-is, pe-1);
-
+        root.left = build(inorder, postorder, is, curIdx - 1, ps, ps + curIdx - is - 1);
+        root.right = build(inorder, postorder, curIdx + 1, ie, ps + curIdx - is, pe - 1);
         return root;
 
     }
 
-
-
-    private int search(int[] inorder, int data){
-
-        int i=0;
-        while (inorder[i]!=data){
+    private int search(int[] inorder, int data) {
+        int i = 0;
+        while (inorder[i] != data) {
             i++;
         }
-
         return i;
     }
-
-
-
 
 
 }

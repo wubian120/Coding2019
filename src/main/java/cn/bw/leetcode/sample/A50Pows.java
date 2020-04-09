@@ -13,7 +13,7 @@ public class A50Pows {
             return 1;
         }
         double v = divideGenerate(x, Math.abs((long) n));
-        return n >= 0 ? v : 1 / v;
+        return n > 0 ? v : 1 / v;
     }
 
     private double divideGenerate(double x, long n) {

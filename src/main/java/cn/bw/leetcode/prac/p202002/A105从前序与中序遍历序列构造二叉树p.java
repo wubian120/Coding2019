@@ -23,43 +23,39 @@ public class A105从前序与中序遍历序列构造二叉树p {
 
     public TreeNode buildTree(int[] preorder, int[] inorder) {
 
-        if(preorder==null||inorder==null){
+        if (inorder == null || preorder == null) {
             return null;
         }
-
-
-        return build(preorder,inorder,0,inorder.length-1);
+        return build(inorder, preorder, 0, inorder.length - 1);
 
     }
 
     int index = 0;
 
-    private TreeNode build(int[] preorder, int[] inorder, int left, int right){
+    private TreeNode build(int[] inorder, int[] preorder, int left, int right) {
 
-        if(left>right||index>=preorder.length){
+        if (left > right) {
             return null;
         }
 
-        int curIdx=search(inorder,preorder[index]);
-
-        TreeNode root = new TreeNode(inorder[curIdx]);
+        int curIdx = search(inorder, preorder[index]);
         index++;
-        root.left = build(preorder,inorder,left, curIdx-1);
-        root.right = build(preorder,inorder, curIdx+1, right);
+        TreeNode root = new TreeNode(inorder[curIdx]);
+
+        root.left = build(inorder, preorder, left, curIdx - 1);
+        root.right = build(inorder, preorder, curIdx + 1, right);
 
         return root;
+
+
     }
 
-
-    private int search(int[] inorder, int data){
-
-        int i=0;
-
-        while (inorder[i]!=data){
+    private int search(int[] inorder, int data) {
+        int i = 0;
+        while (inorder[i] != data) {
             i++;
         }
         return i;
-
     }
 
 
