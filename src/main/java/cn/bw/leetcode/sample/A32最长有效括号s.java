@@ -16,6 +16,10 @@ package cn.bw.leetcode.sample;
  *   4.两种情况下 取值的问题
  *   如果 i-1 的位置是 '('  则需要判断 i-1前一个位置是否是 有效长度
  *
+ *   关键位置：
+ *    i-1
+ *    i-dp[i-1]-1
+ *
  *
  */
 public class A32最长有效括号s {
