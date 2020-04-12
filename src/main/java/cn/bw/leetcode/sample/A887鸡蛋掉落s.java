@@ -5,6 +5,10 @@ package cn.bw.leetcode.sample;
  * @Description : leetcode 887鸡蛋掉落s
  * @Author : Richard.Wu
  * @Date: 2020-01-23 17:40
+ *
+ *
+ *
+ *
  */
 
 public class A887鸡蛋掉落s {
@@ -25,5 +29,21 @@ public class A887鸡蛋掉落s {
 
 
         return result;
+    }
+
+
+    public static void main(String...args){
+
+        int k = 2, n = 6;
+
+        A887鸡蛋掉落s a = new A887鸡蛋掉落s();
+
+        int result = a.superEggDrop(k, n);
+
+
+
+
+
+
     }
 }

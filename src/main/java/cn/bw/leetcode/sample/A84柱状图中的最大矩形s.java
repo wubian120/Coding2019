@@ -18,7 +18,8 @@ public class A84柱状图中的最大矩形s {
         }
 
         while (stack.peek() !=-1){
-            maxArea = Math.max(maxArea,heights[stack.pop()] *(heights.length-stack.peek()-1));
+            maxArea = Math.max(maxArea,
+                    heights[stack.pop()] *(heights.length-stack.peek()-1));
         }
 
         return maxArea;

@@ -25,8 +25,9 @@ public class A72编辑距离p {
         for (int i = 0; i <= len1; i++) {
             dp[i][0] = i;
         }
-        for (int i = 0; i <= len2; i++) {
-            dp[0][i] = i;
+
+        for (int j = 0; j <= len2; j++) {
+            dp[0][j] = j;
         }
 
         for (int i = 1; i <= len1; i++) {
@@ -41,21 +42,20 @@ public class A72编辑距离p {
 
             }
         }
-
         return dp[len1][len2];
 
     }
 
 
-    public static void main(String...args){
+    public static void main(String... args) {
 
-        int[] nums={2,1,6,4,1,3,9};
+        int[] nums = {2, 1, 6, 4, 1, 3, 9};
 
         PriorityQueue<Integer> queue = new PriorityQueue<>();
 
         PriorityQueue<Integer> queue1 = new PriorityQueue<>(Comparator.reverseOrder());
 
-        for(int i=0;i<nums.length;i++){
+        for (int i = 0; i < nums.length; i++) {
             queue.offer(nums[i]);
             queue1.offer(nums[i]);
         }

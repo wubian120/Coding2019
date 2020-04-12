@@ -21,7 +21,9 @@ public class A222完全二叉树的节点个数s {
 
 
     public int countNodes(TreeNode root) {
-        return root != null ? 1 + countNodes(root.right) + countNodes(root.left) : 0;
+        return root != null ? 1 +
+                countNodes(root.right)
+                + countNodes(root.left) : 0;
 
     }
 
