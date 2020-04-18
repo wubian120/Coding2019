@@ -36,28 +36,37 @@ public class A117填充每个节点的下一个右侧节点指针II {
 
     // BFS
     public Node connect(Node root) {
-        if (root == null) {
-            return root;
-        }
-        Queue<Node> queue = new LinkedList<Node>();
+        if(root==null)return root;
+
+        Queue<Node> queue = new LinkedList<>();
+
         queue.offer(root);
-        while (!queue.isEmpty()) {
-            int size = queue.size();
+
+        while (!queue.isEmpty()){
+
             Node pre = null;
-            for (int i = 0; i < size; i++) {
+
+            int size = queue.size();
+            for(int i=0;i<size;i++){
+
                 Node cur = queue.poll();
-                if (i > 0) {
-                    pre.next = cur;
+                if(i>0){
+                    pre.next=cur;
                 }
                 pre = cur;
-                if (cur.left != null) {
+
+                if(cur.left!=null){
                     queue.offer(cur.left);
                 }
-                if (cur.right != null) {
+
+                if(cur.right!=null){
                     queue.offer(cur.right);
                 }
+
             }
+
         }
+
         return root;
 
     }
