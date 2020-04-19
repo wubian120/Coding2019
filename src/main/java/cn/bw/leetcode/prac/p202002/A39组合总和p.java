@@ -9,50 +9,47 @@ import java.util.List;
  * @Author : Richard.Wu
  * @Date: 2020-04-17 21:33
  * @Description :
+ *
+ * 2020-04-18
+ * 2020-04-19
+ *
  */
 
 public class A39组合总和p {
 
 
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        if(candidates==null||candidates.length==0){
-            return null;
-        }
 
-        List<List<Integer>> results=new LinkedList<>();
-        Arrays.sort(candidates);
+        List<List<Integer>> reuslts=new LinkedList<>();
+        LinkedList<Integer> curList=new LinkedList<>();
+        dfs(0,reuslts,curList,candidates,target);
 
-        List<Integer> curList=new LinkedList<>();
-        backtrack(curList,0,target,candidates,results);
-
-        return results;
-
+        return reuslts;
 
     }
 
-
-    private void backtrack(List<Integer> curList,
-                           int idx, int target, int[] nums,
-                           List<List<Integer>> results){
-        if(target<0) return;
-
+    private void dfs(int idx,
+                     List<List<Integer>>res,
+                     LinkedList<Integer>curList, int[] nums, int target){
         if(target==0){
-            results.add(new LinkedList<>(curList));
+            res.add(new LinkedList<>(curList));
             return;
         }
 
         for(int i=idx;i<nums.length;i++){
-            if(nums[i]>target)break;
+            if(target<nums[i]){
+                continue;
+            }
 
             curList.add(nums[i]);
-            backtrack(curList,i,target-nums[i],nums,results);
-            curList.remove(curList.size()-1);
+            dfs(i,res,curList,nums,target-nums[i]);
+            curList.removeLast();
+
         }
-
-
-
-
     }
+
+
+
 
 
 

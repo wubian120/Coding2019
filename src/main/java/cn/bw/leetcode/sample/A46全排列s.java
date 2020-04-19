@@ -10,6 +10,8 @@ import java.util.List;
  * @Author : Richard.Wu
  * @Date: 2020-04-18 10:39
  * @Description :
+ *
+ * ¬
  */
 
 public class A46全排列s {

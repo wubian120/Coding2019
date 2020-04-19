@@ -16,11 +16,14 @@ public class A56合并区间p {
 
     public int[][] merge(int[][] intervals) {
 
-        if (intervals == null || intervals.length == 0) return intervals;
+        if (intervals == null || intervals.length == 0) {
+            return intervals;
+        }
 
         Arrays.sort(intervals, new Comparator<int[]>() {
             @Override
             public int compare(int[] o1, int[] o2) {
+
                 if (o1[0] == o2[0]) {
                     return o1[1] - o2[1];
                 } else {
@@ -28,31 +31,33 @@ public class A56合并区间p {
                 }
             }
         });
-        List<int[]> curList=new LinkedList<>();
 
-        int left=intervals[0][0], right=intervals[0][1];
-        for(int i=1;i<intervals.length;i++){
+        List<int[]> curList = new LinkedList<>();
+        int left = intervals[0][0], right = intervals[0][1];
+        int len = intervals.length;
+        for (int i = 0; i < len; i++) {
 
-            if(intervals[i][0]<=right){
-                right = Math.max(right,intervals[i][1]);
-
-            }else {
-                curList.add(new int[]{left,right});
-                left=intervals[i][0];
-                right=intervals[i][1];
+            if (intervals[i][0] <= right) {
+                right = Math.max(intervals[i][1], right);
+            } else {
+                curList.add(new int[]{left, right});
+                left = intervals[i][0];
+                right = intervals[i][1];
             }
         }
 
         curList.add(new int[]{left,right});
+
         int[][] results=new int[curList.size()][2];
+
         for(int i=0;i<curList.size();i++){
             results[i]=curList.get(i);
         }
 
         return results;
+        
 
     }
-
 
 
 }

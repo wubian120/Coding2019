@@ -10,20 +10,21 @@ package cn.bw.leetcode.prac.p202002;
  */
 
 public class A62不同路径p0 {
-    public int uniquePaths(int m, int n) {
+    public int uniquePaths(int rows, int cols) {
 
+        int[] dp = new int[cols];
 
-        int[] dp = new int[n];
         dp[0]=1;
+        for(int r=0;r<rows;r++){
 
-        for(int i=0;i<m;i++){
-            for(int j=1;j<n;j++){
-
-                dp[j]+=dp[j-1];
+            for(int c=1;c<cols;c++){
+                dp[c]+=dp[c-1];
             }
         }
 
-        return dp[n-1];
+
+        return dp[cols-1];
+
 
 
     }
