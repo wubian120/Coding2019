@@ -34,7 +34,9 @@ public class A39组合总和s {
 
     private void backtrack(List<Integer> curList,
                            int target,
-                           int idx, int[] nums, List<List<Integer>> results){
+                           int idx,
+                           int[] nums,
+                           List<List<Integer>> results){
         if(target<0){
             return;
         }
