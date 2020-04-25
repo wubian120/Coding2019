@@ -7,6 +7,7 @@ package cn.bw.leetcode.prac.p202002;
  * @Description :
  *
  * 2020-04-19
+ * 2020-04-24
  *
  */
 
@@ -15,10 +16,11 @@ public class A169多数元素p {
 
     public int majorityElement(int[] nums) {
 
-        int count=0, result=nums[0], maxLen=nums.length/2;
+        int count = 0, result=nums[0], maxLen=nums.length/2;
 
-        for(int num:nums){
-            if(num==result){
+        for(int number:nums){
+
+            if(number==result){
                 count++;
                 if(count>maxLen){
                     return result;
@@ -26,13 +28,16 @@ public class A169多数元素p {
             }else {
                 count--;
                 if(count==0){
-                    result=num;
+                    result=number;
                     count=1;
                 }
             }
+
         }
 
         return result;
+
+
     }
 
 }
