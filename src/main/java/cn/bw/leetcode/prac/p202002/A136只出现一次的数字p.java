@@ -11,15 +11,16 @@ public class A136只出现一次的数字p {
 
 
     public int singleNumber(int[] nums) {
+
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
         int result = nums[0];
-        int len=nums.length;
-        if(len>1){
-            for(int i=1;i<len;i++){
-                result ^=nums[i];
-            }
+
+        for(int i=1;i<nums.length;i++){
+            result ^=nums[i];
         }
 
         return result;
-
     }
 }

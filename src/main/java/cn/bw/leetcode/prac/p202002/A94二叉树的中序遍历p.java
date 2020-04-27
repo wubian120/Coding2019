@@ -26,17 +26,20 @@ public class A94二叉树的中序遍历p {
 
     //stack
     public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> results= new LinkedList<>();
 
-        List<Integer> results = new LinkedList<>();
+        if(root==null)
+            return results;
+
         Stack<TreeNode> stack = new Stack<>();
-
         TreeNode cur = root;
-        while (!stack.isEmpty() || cur != null) {
 
-            while (cur != null) {
+        while (cur!=null||!stack.isEmpty()){
+
+            while (cur!=null){
+
                 stack.push(cur);
                 cur = cur.left;
-
             }
             cur = stack.pop();
             results.add(cur.val);
@@ -51,22 +54,25 @@ public class A94二叉树的中序遍历p {
     //递归
     public List<Integer> inorderTraversal1(TreeNode root) {
 
-        List<Integer> results = new LinkedList<>();
+        List<Integer> results=new LinkedList<>();
+        if(root==null)return results;
 
         inorder(root, results);
-
         return results;
 
+
     }
 
-    private void inorder(TreeNode root, List<Integer> results) {
+    private  void inorder(TreeNode root, List<Integer> results){
+        if(root==null)return;
 
-        if (root == null) return;
-        inorder(root.left, results);
+        inorder(root.left,results);
         results.add(root.val);
-        inorder(root.right, results);
+        inorder(root.right,results);
 
     }
+
+
 
 
 }

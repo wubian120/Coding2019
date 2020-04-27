@@ -26,17 +26,20 @@ public class A102二叉树的层次遍历p0 {
 
     public List<List<Integer>> levelOrder(TreeNode root) {
 
-        if (root == null) return Collections.emptyList();
+        List<List<Integer>> results= new LinkedList<>();
+        if(root==null)return results;
 
-        List<List<Integer>> results=new LinkedList<>();
-        List<TreeNode> tree = new LinkedList<>();
-        tree.add(root);
-        while (!tree.isEmpty()) {
+        List<TreeNode> treeLevel=new LinkedList<>();
 
-            List<Integer> vals = new LinkedList<>();
+        treeLevel.add(root);
+        while (!treeLevel.isEmpty()){
+
             List<TreeNode> level = new LinkedList<>();
+            List<Integer> levelVals= new LinkedList<>();
 
-            for(TreeNode node:tree){
+            for(TreeNode node:treeLevel){
+
+                levelVals.add(node.val);
 
                 if(node.left!=null){
                     level.add(node.left);
@@ -45,16 +48,15 @@ public class A102二叉树的层次遍历p0 {
                     level.add(node.right);
                 }
 
-                vals.add(node.val);
-
             }
 
-            tree=level;
-            results.add(vals);
-
+            results.add(levelVals);
+            treeLevel = level;
         }
 
         return results;
+
+
 
 
     }

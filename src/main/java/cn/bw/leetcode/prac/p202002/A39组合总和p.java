@@ -12,6 +12,7 @@ import java.util.List;
  *
  * 2020-04-18
  * 2020-04-19
+ * 2020-04-25
  *
  */
 
@@ -20,19 +21,23 @@ public class A39组合总和p {
 
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
 
-        List<List<Integer>> reuslts=new LinkedList<>();
-        LinkedList<Integer> curList=new LinkedList<>();
-        dfs(0,reuslts,curList,candidates,target);
+        List<List<Integer>> results=new LinkedList<>();
+        LinkedList<Integer> curList= new LinkedList<>();
+        backtrack(0,curList,results,target,candidates);
 
-        return reuslts;
+        return results;
+
 
     }
 
-    private void dfs(int idx,
-                     List<List<Integer>>res,
-                     LinkedList<Integer>curList, int[] nums, int target){
+    private void backtrack(int idx, LinkedList<Integer> curList,
+                           List<List<Integer>> results,
+                           int target, int[] nums){
+
+
+        if(target<0)return;
         if(target==0){
-            res.add(new LinkedList<>(curList));
+            results.add(new LinkedList<>(curList));
             return;
         }
 
@@ -40,13 +45,13 @@ public class A39组合总和p {
             if(target<nums[i]){
                 continue;
             }
-
             curList.add(nums[i]);
-            dfs(i,res,curList,nums,target-nums[i]);
+            backtrack(i,curList,results,target-nums[i],nums);
             curList.removeLast();
-
         }
     }
+
+
 
 
 

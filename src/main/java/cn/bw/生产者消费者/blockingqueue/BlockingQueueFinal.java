@@ -53,6 +53,8 @@ public class BlockingQueueFinal implements TaskFactory {
         }
     }
 
+
+
     private class Consumer implements Runnable {
 
         @Override
@@ -62,7 +64,7 @@ public class BlockingQueueFinal implements TaskFactory {
 
                     Task task = workingQueue.take();
                     Thread.sleep(10 * 1000);
-                    System.out.println("Consume-Task:"+task.taskNo);
+                    System.out.println("Consume-Task:" + task.taskNo);
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -72,21 +74,28 @@ public class BlockingQueueFinal implements TaskFactory {
     }
 
 
-    public static void main(String...args){
+    public static void main(String... args) {
 
         BlockingQueueFinal bf = new BlockingQueueFinal();
 
-        for(int i=0;i<5;i++){
+        for (int i = 0; i < 5; i++) {
             new Thread(bf.getProducer()).start();
         }
 
-        for(int i=0;i<3;i++){
+        for (int i = 0; i < 3; i++) {
             new Thread(bf.getConsummer()).start();
         }
 
 
-
     }
 
+
+}
+
+interface TaskFactory {
+
+    Runnable getConsummer();
+
+    Runnable getProducer();
 
 }

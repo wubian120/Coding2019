@@ -14,47 +14,36 @@ import java.util.List;
 
 public class A39组合总和s {
 
+    // main,  回溯
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
 
-        if(candidates==null||candidates.length==0||target==0){
-            return null;
-        }
-        List<List<Integer>> results=new LinkedList<>();
+        List<List<Integer>> reuslts=new LinkedList<>();
+        LinkedList<Integer> curList=new LinkedList<>();
+        dfs(0,reuslts,curList,candidates,target);
 
-        Arrays.sort(candidates);
-
-        List<Integer> curList=new LinkedList<>();
-        backtrack(curList,target,0,candidates,results);
-
-        return results;
-
+        return reuslts;
 
     }
 
-
-    private void backtrack(List<Integer> curList,
-                           int target,
-                           int idx,
-                           int[] nums,
-                           List<List<Integer>> results){
-        if(target<0){
-            return;
-        }
+    private void dfs(int idx,
+                     List<List<Integer>>res,
+                     LinkedList<Integer>curList, int[] nums, int target){
         if(target==0){
-            results.add(new LinkedList<>(curList));
+            res.add(new LinkedList<>(curList));
             return;
         }
+
         for(int i=idx;i<nums.length;i++){
-            if(nums[i]>target){
-                break;
+            if(target<nums[i]){
+                continue;
             }
+
             curList.add(nums[i]);
-            backtrack(curList,target-nums[i],i,nums,results);
-            curList.remove(curList.size()-1);
+            dfs(i,res,curList,nums,target-nums[i]);
+            curList.removeLast();
+
         }
-
     }
-
 
 
     ///
@@ -65,19 +54,24 @@ public class A39组合总和s {
         return result;
     }
 
-    private void dfs(List<List<Integer>> result, List<Integer> cur, int[] candidates, int target, int start) {
+    private void dfs(List<List<Integer>> result,
+                     List<Integer> cur,
+                     int[] candidates,
+                     int target, int start) {
+
         if (target == 0) {
             result.add(new ArrayList<>(cur));
         }
+
         for (int i = start; i < candidates.length; i++) {
             if (target < candidates[i]) continue;//如果target<当前数，则跳过
+
             cur.add(candidates[i]);
             dfs(result, cur, candidates, target - candidates[i], i);
+
             cur.remove(cur.size() - 1);
         }
     }
-
-
 
 
 }

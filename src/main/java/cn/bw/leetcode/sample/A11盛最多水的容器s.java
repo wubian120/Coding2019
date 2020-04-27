@@ -17,30 +17,28 @@ public class A11盛最多水的容器s {
 
     public int maxArea(int[] height) {
 
-        int head = 0, tail = height.length-1;
 
+        int right =height.length-1, left = 0;
         int maxArea = 0;
 
-        while (head < tail) {
+        while(left<right){
 
-            int w = tail - head;
-
-            int h, area;
-
-            if(height[tail] < height[head]) {
-                h = height[tail];
-                tail = tail - 1;
-            } else {
-                h = height[head];
-                head = head + 1;
+            int w = right-left;
+            int h = 0;
+            if(height[left]<height[right]){
+                h=height[left];
+                left++;
+            }else{
+                h=height[right];
+                right--;
             }
-            area = w * h;
 
-            if ( area> maxArea) {
-                maxArea = area;
-            }
+            maxArea = Math.max(maxArea, w*h);
         }
+
         return maxArea;
+
+
     }
 
 

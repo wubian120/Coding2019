@@ -2,6 +2,7 @@ package cn.bw.leetcode.prac.p202002;
 
 import cn.bw.leetcode.sample.A144二叉树的前序遍历s;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
@@ -28,24 +29,49 @@ public class A144二叉树的前序遍历p {
 
     public List<Integer> preorderTraversal(TreeNode root) {
 
+        List<Integer> results=new LinkedList<>();
+        preorder(root,results);
+
+        return results;
+
+    }
+
+    private void preorder(TreeNode root, List<Integer> results){
+
+        if(root==null)return;
+
+        results.add(root.val);
+        preorder(root.left,results);
+        preorder(root.right,results);
+
+    }
+
+    public List<Integer> preorderTraversalStack(TreeNode root) {
+
+        if(root==null)return Collections.emptyList();
         Stack<TreeNode> stack = new Stack<>();
-        List<Integer> results = new LinkedList<>();
+        TreeNode curNode=root;
+        List<Integer> results=new LinkedList<>();
+        while (curNode!=null||!stack.isEmpty()){
 
-        TreeNode cur = root;
-        while (cur != null || !stack.isEmpty()) {
-
-            while (cur !=null){
-                results.add(cur.val);
-                stack.push(cur);
-                cur = cur.left;
+            while (curNode!=null){
+                results.add(curNode.val);
+                stack.push(curNode);
+                curNode = curNode.left;
             }
 
-            cur = stack.pop();
-            cur = cur.right;
+            if(!stack.isEmpty()){
+                curNode = stack.pop();
+                curNode = curNode.right;
+
+            }
 
         }
 
         return results;
+
+
+
     }
 
 }
