@@ -5,6 +5,10 @@ package cn.bw.leetcode.prac.p202002;
  * @Author : Richard.Wu
  * @Date: 2020-04-19 10:58
  * @Description :
+ *
+ * 2020-04-27
+ *
+ *
  */
 
 public class A11盛最多水的容器p {
@@ -12,26 +16,8 @@ public class A11盛最多水的容器p {
 
     public int maxArea(int[] height) {
 
-        int right =height.length-1, left = 0;
-        int maxArea = 0;
 
-        while(left<right){
-
-            int w = right-left;
-            int h = 0;
-            if(height[left]<height[right]){
-                h=height[left];
-                left++;
-            }else{
-                h=height[right];
-                right--;
-            }
-
-            maxArea = Math.max(maxArea, w*h);
-        }
-
-        return maxArea;
-
+        return 0;
     }
 
 

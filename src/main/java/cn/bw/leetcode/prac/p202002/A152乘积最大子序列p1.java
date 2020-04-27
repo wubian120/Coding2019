@@ -5,23 +5,28 @@ package cn.bw.leetcode.prac.p202002;
  * @Description :
  * @Author : Richard.Wu
  * @Date: 2020-02-11 14:27
+ * <p>
+ * 2020-04-27
  */
 
 public class A152乘积最大子序列p1 {
     public int maxProduct(int[] nums) {
 
         int len = nums.length;
-        int tmax = nums[0], tmin = nums[0], max = nums[0];
+        int max = nums[0], curMax = nums[0], curMin = nums[0];
 
         for (int i = 1; i < len; i++) {
+            int pre = curMax;
 
-            int pre = tmax;
-            tmax = Math.max(tmax * nums[i], Math.max(tmin * nums[i], nums[i]));
-            tmin = Math.min(pre * nums[i], Math.min(tmin * nums[i], nums[i]));
+            curMax = Math.max(nums[i],
+                    Math.max(nums[i] * curMax,
+                            nums[i] * curMin));
+            curMin = Math.min(nums[i],Math.min(curMin*nums[i],
+                    pre*nums[i]));
 
-            max = Math.max(tmax, max);
-
+            max=Math.max(curMax,max);
         }
+
         return max;
 
     }
