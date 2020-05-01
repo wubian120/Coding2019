@@ -34,6 +34,7 @@ public class A51N皇后s {
                 cur.add(builder.toString());
             }
             res.add(cur);
+            //注意这个 return
             return;
         }
         for(int i=0;i<len;i++){

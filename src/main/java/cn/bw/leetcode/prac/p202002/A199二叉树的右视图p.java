@@ -3,6 +3,7 @@ package cn.bw.leetcode.prac.p202002;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * @ClassName : A199
@@ -27,26 +28,40 @@ public class A199二叉树的右视图p {
         }
     }
 
-    private int level=-1;
+
     public List<Integer> rightSideView(TreeNode root) {
 
         List<Integer> results= new LinkedList<>();
-        rightView(root,0,results);
-        return results;
-    }
-
-    private void rightView(TreeNode root, int n, List<Integer> results){
-        if(root==null)
-            return;
-
-        if(n>level){
-            level=n;
-            results.add(root.val);
+        if(root==null){
+            return results;
         }
 
-        rightView(root.right, n+1, results);
-        rightView(root.left, n+1, results);
+        Queue<TreeNode> queue= new LinkedList<>();
+        queue.offer(root);
+
+        while (!queue.isEmpty()){
+            int size=queue.size();
+            for(int i=0;i<size;i++){
+                TreeNode curNode=queue.poll();
+                if(curNode.left!=null){
+                    queue.offer(curNode.left);
+                }
+                if(curNode.right!=null){
+                    queue.offer(curNode.right);
+                }
+
+                if(i==size-1){
+                    results.add(curNode.val);
+                }
+            }
+        }
+
+        return results;
+
+
+
     }
+
 
 
 }

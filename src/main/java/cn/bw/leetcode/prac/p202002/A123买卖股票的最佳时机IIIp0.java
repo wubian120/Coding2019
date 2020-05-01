@@ -10,17 +10,19 @@ package cn.bw.leetcode.prac.p202002;
 public class A123买卖股票的最佳时机IIIp0 {
 
     public int maxProfit(int[] prices) {
-        int fstBuy=Integer.MAX_VALUE,
-                fstSell=0,
-                sndBuy=Integer.MAX_VALUE,
-                sndSell=0;
+
+        int fstBuy=Integer.MAX_VALUE;
+        int fstSell=0;
+        int sndBuy=Integer.MAX_VALUE;
+        int sndSell=0;
 
         for(int price:prices){
-            fstBuy=Math.min(price,fstBuy);
-            fstSell=Math.max(fstSell,price-fstBuy);
-            sndBuy=Math.min(sndBuy,price-fstSell);
-            sndSell=Math.max(sndSell,price-sndBuy);
 
+            fstBuy = Math.min(price,fstBuy);
+
+            fstSell= Math.max(fstSell,price-fstBuy);
+            sndBuy = Math.min(sndBuy,price-fstSell);
+            sndSell=Math.max(sndSell,price-sndBuy);
         }
 
         return sndSell;
