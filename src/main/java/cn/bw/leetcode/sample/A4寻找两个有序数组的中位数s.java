@@ -5,6 +5,12 @@ package cn.bw.leetcode.sample;
  * @Author : Richard.Wu
  * @Date: 2020-04-22 21:43
  * @Description :
+ * @思路
+ *
+ * 求 k 小的一种特殊情况。
+ * 找到 第k小， 每次排除一半。
+ *
+ *
  */
 
 public class A4寻找两个有序数组的中位数s {
@@ -15,7 +21,8 @@ public class A4寻找两个有序数组的中位数s {
         int left = (n + m + 1) / 2;
         int right = (n + m + 2) / 2;
         //将偶数和奇数的情况合并，如果是奇数，会求两次同样的 k 。
-        return (getKth(nums1, 0, n - 1, nums2, 0, m - 1, left) + getKth(nums1, 0, n - 1, nums2, 0, m - 1, right)) * 0.5;
+        return (getKth(nums1, 0, n - 1, nums2, 0, m - 1, left)
+                + getKth(nums1, 0, n - 1, nums2, 0, m - 1, right)) * 0.5;
     }
 
     private int getKth(int[] nums1, int start1, int end1, int[] nums2, int start2, int end2, int k) {

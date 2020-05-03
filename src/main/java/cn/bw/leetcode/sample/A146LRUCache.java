@@ -33,30 +33,6 @@ public class A146LRUCache {
 
     Map<Integer, Node> nodeMap = new HashMap<>();
 
-    public int get(int key) {
-        if (!nodeMap.containsKey(key)) {
-            return -1;
-        }
-
-        //拿出 node, 把node 前后连起来
-        Node node = nodeMap.get(key);
-        Node nodePrev = node.prev;
-        Node nodeNext = node.next;
-
-        nodePrev.next = nodeNext;
-        nodeNext.prev = nodePrev;
-
-        //把node放到 链表尾部
-        Node tmpTailPrev = tail.prev;
-        tmpTailPrev.next = node;
-        node.prev = tmpTailPrev;
-        node.next = tail;
-        tail.prev = node;
-
-        return node.value;
-
-    }
-
     public void put(int key, int value){
         Node node = nodeMap.get(key);
         //新增
@@ -107,4 +83,30 @@ public class A146LRUCache {
 
         }
     }
+
+    public int get(int key) {
+        if (!nodeMap.containsKey(key)) {
+            return -1;
+        }
+
+        //拿出 node, 把node 前后连起来
+        Node node = nodeMap.get(key);
+        Node nodePrev = node.prev;
+        Node nodeNext = node.next;
+
+        nodePrev.next = nodeNext;
+        nodeNext.prev = nodePrev;
+
+        //把node放到 链表尾部
+        Node tmpTailPrev = tail.prev;
+        tmpTailPrev.next = node;
+        node.prev = tmpTailPrev;
+        node.next = tail;
+        tail.prev = node;
+
+        return node.value;
+
+    }
+
+
 }

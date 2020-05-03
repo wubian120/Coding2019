@@ -21,36 +21,37 @@ public class A39组合总和p {
 
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
 
+        LinkedList<Integer> curList=new LinkedList<>();
         List<List<Integer>> results=new LinkedList<>();
-        LinkedList<Integer> curList= new LinkedList<>();
-        backtrack(0,curList,results,target,candidates);
+        backtrack(0,candidates,curList,results,target);
 
         return results;
 
 
+
     }
 
-    private void backtrack(int idx, LinkedList<Integer> curList,
-                           List<List<Integer>> results,
-                           int target, int[] nums){
+    private void backtrack(int idx,int[] nums, LinkedList<Integer> curList,
+                           List<List<Integer>> results, int target){
 
 
-        if(target<0)return;
         if(target==0){
             results.add(new LinkedList<>(curList));
             return;
         }
 
         for(int i=idx;i<nums.length;i++){
-            if(target<nums[i]){
+            if(nums[i]>target){
                 continue;
             }
+
             curList.add(nums[i]);
-            backtrack(i,curList,results,target-nums[i],nums);
+            backtrack(i,nums,curList,results,target-nums[i]);
             curList.removeLast();
         }
-    }
 
+
+    }
 
 
 

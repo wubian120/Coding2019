@@ -17,41 +17,52 @@ import java.util.List;
 public class A46全排列s {
 
 
-    // 回溯解法  官方
+    //   最快 解法  uncheck
 
     public List<List<Integer>> permute(int[] nums) {
 
-        int len = nums.length;
-        List<List<Integer>> results = new LinkedList<>();
-        List<Integer> numList = new LinkedList<>();
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
 
+        per(nums, 0, nums.length, res);
 
-        for (int n : nums) {
-            numList.add(n);
-        }
-
-        backtrack(0, len, numList, results);
-
-
-        return results;
+        return res;
     }
 
-    private void backtrack(int idx, int len, List<Integer> numList,
-                           List<List<Integer>> results) {
-        if (idx == len) {
-            results.add(new LinkedList<>(numList));
+    public void per(int[] arr,int begin,int end,List<List<Integer>> out){
+
+        if(begin==end){
+
+            ArrayList<Integer> temp = new ArrayList<>();
+
+            for(int i=0;i<end;i++){
+                temp.add(arr[i]);
+            }
+
+            out.add(temp);
+
+        }else{
+
+            for(int i=begin;i<end;i++){
+
+                int temp = arr[i];
+                arr[i] = arr[begin];
+                arr[begin] = temp;
+
+                per(arr,begin+1,end,out);
+
+                temp = arr[i];
+                arr[i] = arr[begin];
+                arr[begin] = temp;
+
+            }
+
         }
 
-        for (int i = idx; i < len; i++) {
-
-            Collections.swap(numList, idx, i);
-            backtrack(idx + 1, len, numList, results);
-            Collections.swap(numList, idx, i);
-        }
     }
 
+    // 最简单解法
 
-    ///https://leetcode-cn.com/problems/permutations/solution/hui-su-suan-fa-xiang-jie-by-labuladong-2/
+    // https://leetcode-cn.com/problems/permutations/solution/hui-su-suan-fa-xiang-jie-by-labuladong-2/
 
     List<List<Integer>> permute2(int[] nums) {
         List<List<Integer>> res = new LinkedList();

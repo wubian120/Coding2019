@@ -11,19 +11,8 @@ public class A53最大子序列和p0 {
 
     public int maxSubArray(int[] nums) {
 
-        int sum=nums[0], cur=nums[0];
-        int len=nums.length;
-        for(int i=1;i<len;i++){
 
-            if(cur>=0){
-                cur+=nums[i];
-            }else {
-                cur=nums[i];
-            }
-            sum=Math.max(sum,cur);
-        }
-
-        return sum;
+        return 0;
 
     }
 

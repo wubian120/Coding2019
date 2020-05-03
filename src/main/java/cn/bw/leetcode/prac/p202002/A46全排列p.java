@@ -16,36 +16,35 @@ public class A46全排列p {
 
     public List<List<Integer>> permute(int[] nums) {
 
-      LinkedList<Integer> curList=new LinkedList<>();
-      List<List<Integer>> results=new LinkedList<>();
-      backtrack(nums,curList,results);
+        List<List<Integer>> results = new LinkedList<>();
+        LinkedList<Integer> curList = new LinkedList<>();
 
-      return results;
+        backtrack(curList,results,nums);
 
-
+        return results;
 
     }
 
-   private void backtrack(int[] nums, LinkedList<Integer> curList, List<List<Integer>> results){
+    private void backtrack(LinkedList<Integer> curList,
+                           List<List<Integer>> results,
+                           int[] nums) {
 
-        if(nums.length==curList.size()){
+        if(curList.size()==nums.length){
             results.add(new LinkedList<>(curList));
-            return;
         }
 
         for(int i=0;i<nums.length;i++){
+
             if(curList.contains(nums[i])){
                 continue;
             }
 
             curList.add(nums[i]);
-            backtrack(nums,curList,results);
+            backtrack(curList,results,nums);
             curList.removeLast();
         }
 
-   }
-
-
+    }
 
 
     public static void main(String[] args) {

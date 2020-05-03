@@ -14,6 +14,8 @@ import java.util.List;
 
 public class A39组合总和s {
 
+
+
     // main,  回溯
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
 
@@ -28,6 +30,7 @@ public class A39组合总和s {
     private void dfs(int idx,
                      List<List<Integer>>res,
                      LinkedList<Integer>curList, int[] nums, int target){
+
         if(target==0){
             res.add(new LinkedList<>(curList));
             return;
@@ -44,6 +47,7 @@ public class A39组合总和s {
 
         }
     }
+
 
 
     ///

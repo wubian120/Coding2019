@@ -13,9 +13,8 @@ public class A38外观数列p {
     public String countAndSay(int n) {
 
         StringBuilder builder = new StringBuilder();
+        int pre =0, cur=1;
 
-        int pOne=0;
-        int cur = 1;
         if(n==1){
             return "1";
         }
@@ -23,21 +22,20 @@ public class A38外观数列p {
         String str=countAndSay(n-1);
 
         for(cur=1;cur<str.length();cur++){
-            //如果当前字符与前一个字符不等，则更新
-            if(str.charAt(pOne)!=str.charAt(cur)){
-                int count=cur-pOne;
-                builder.append(count).append(str.charAt(pOne));
-                pOne = cur;
+            if(str.charAt(cur)!=str.charAt(pre)){
+
+                int count = cur-pre;
+                builder.append(count).append(str.charAt(pre));
+                pre = cur;
             }
-
         }
 
-        if(pOne!=cur){
-            int count=cur-pOne;
-            builder.append(count).append(str.charAt(pOne));
+        if(pre!=cur){
+            int count=cur-pre;
+            builder.append(count).append(str.charAt(pre));
         }
+
         return builder.toString();
-
 
     }
 

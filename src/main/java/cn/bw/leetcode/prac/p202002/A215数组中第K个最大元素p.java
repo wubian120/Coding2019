@@ -21,10 +21,10 @@ public class A215数组中第K个最大元素p {
         PriorityQueue<Integer> queue
                 = new PriorityQueue<>();
 
-        for(int i:nums){
+        for (int i : nums) {
             queue.add(i);
 
-            if(queue.size()>k){
+            if (queue.size() > k) {
                 queue.poll();
             }
         }
@@ -37,49 +37,53 @@ public class A215数组中第K个最大元素p {
 
 
     public int findKthLargestSelect(int[] nums, int k) {
-       int len = nums.length;
 
-       return quickSelect(nums,0,len-1,len-k);
+        int len = nums.length;
+        return quickSelect(nums, 0, len - 1, len - k);
     }
 
-    private int quickSelect(int[] nums, int left, int right, int ksmall){
-        if(left==right){
+    private int quickSelect(int[] nums, int left, int right, int ksmall) {
+
+        if (left == right) {
             return nums[left];
         }
-
         Random random = new Random();
-        int pivotIdx = left+random.nextInt(right-left);
+        int pivotIdx = left + random.nextInt(right - left);
 
-        pivotIdx = partition(nums,left,right,pivotIdx);
+        pivotIdx = partition(pivotIdx, left, right, nums);
 
-        if(pivotIdx==ksmall){
+        if (pivotIdx == ksmall) {
             return nums[pivotIdx];
-        }else if(pivotIdx>ksmall){
-            return quickSelect(nums,left,pivotIdx-1,ksmall);
-        }else {
-            return quickSelect(nums,pivotIdx+1,right,ksmall);
+        } else if (pivotIdx < ksmall) {
+            return quickSelect(nums, pivotIdx + 1, right, ksmall);
+        } else {
+            return quickSelect(nums, left, pivotIdx - 1, ksmall);
         }
+
+
     }
 
-    private int partition(int[] nums,
-                          int left, int right,
-                          int pivotIdx){
+    private int partition(int idx, int left, int right, int[] nums) {
 
-        int pivot = nums[pivotIdx];
+        int pivot = nums[idx];
 
-        swap(nums,pivotIdx,right);
+        swap(nums, idx, right);
 
-        int idx = left;
-        for(int i=left;i<=right;i++){
-            if(nums[i]<pivot){
-                swap(nums,i,idx);
-                idx++;
+        int cur = left;
+        for (int i = left; i < right; i++) {
+
+            if (nums[i] < pivot) {
+                swap(nums, i, cur);
+                cur++;
             }
-        }
 
-        swap(nums,idx,right);
-        return idx;
+        }
+        swap(nums, cur, right);
+
+        return cur;
+
     }
+
 
     private void swap(int[] nums, int i, int j) {
         int t = nums[i];

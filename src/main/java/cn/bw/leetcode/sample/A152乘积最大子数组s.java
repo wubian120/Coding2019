@@ -7,7 +7,7 @@ package cn.bw.leetcode.sample;
  * @Date: 2020-02-09 11:42
  */
 
-public class A152乘积最大子序列s {
+public class A152乘积最大子数组s {
     public int maxProduct(int[] nums) {
 
         int len = nums.length;
@@ -30,7 +30,7 @@ public class A152乘积最大子序列s {
 
         int[] nums = {2, 3, -2, 4};
 
-        A152乘积最大子序列s a = new A152乘积最大子序列s();
+        A152乘积最大子数组s a = new A152乘积最大子数组s();
 
         int result = a.maxProduct(nums);
 
