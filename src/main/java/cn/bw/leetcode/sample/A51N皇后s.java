@@ -46,6 +46,7 @@ public class A51N皇后s {
     }
 
     private boolean isValid(int[] q, int pos){
+        // 注意边界 pos
         for(int i=0;i<pos;i++){
             if(q[i]==q[pos]){
                 return false;

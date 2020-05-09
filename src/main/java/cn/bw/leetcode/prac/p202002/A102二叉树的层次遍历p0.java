@@ -3,12 +3,17 @@ package cn.bw.leetcode.prac.p202002;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * @ClassName : A102二叉树的层次遍历p0
  * @Author : Richard.Wu
  * @Date: 2020-02-16 23:58
  * @Description :
+ *
+ * 2020-05-03
+ *
+ *
  */
 
 public class A102二叉树的层次遍历p0 {
@@ -26,36 +31,38 @@ public class A102二叉树的层次遍历p0 {
 
     public List<List<Integer>> levelOrder(TreeNode root) {
 
-        List<List<Integer>> results= new LinkedList<>();
-        if(root==null)return results;
+      List<List<Integer>> levels=new LinkedList<>();
 
-        List<TreeNode> treeLevel=new LinkedList<>();
+      if(root==null)return levels;
 
-        treeLevel.add(root);
-        while (!treeLevel.isEmpty()){
+      Queue<TreeNode> queue = new LinkedList<TreeNode>();
+      queue.add(root);
 
-            List<TreeNode> level = new LinkedList<>();
-            List<Integer> levelVals= new LinkedList<>();
+      int level=0;
 
-            for(TreeNode node:treeLevel){
+      while (!queue.isEmpty()){
 
-                levelVals.add(node.val);
+          levels.add(new LinkedList<>());
 
-                if(node.left!=null){
-                    level.add(node.left);
-                }
-                if(node.right!=null){
-                    level.add(node.right);
-                }
+          int levelLen=queue.size();
 
-            }
+          for(int i=0;i<levelLen;i++){
+              TreeNode node =queue.poll();
 
-            results.add(levelVals);
-            treeLevel = level;
-        }
+              levels.get(level).add(node.val);
 
-        return results;
+              if(node.left!=null){
+                  queue.add(node.left);
+              }
+              if(node.right!=null){
+                  queue.add(node.right);
+              }
+          }
+          level++;
 
+      }
+
+      return levels;
 
 
 

@@ -13,25 +13,26 @@ public class A49字母异位词分组p {
 
     public List<List<String>> groupAnagrams(String[] strs) {
 
-        HashMap<String, List<String>> wordsMap=new HashMap<>();
-        for(String word :strs){
+       HashMap<String,List<String>> wordkeyMap=new HashMap<>();
 
-            char[] wordChars=word.toCharArray();
-            Arrays.sort(wordChars);
+       for(String word:strs){
 
-            String wordKey=String.valueOf(wordChars);
+           char[] wordChar=word.toCharArray();
+           Arrays.sort(wordChar);
 
-            if(wordsMap.containsKey(wordKey)){
-                wordsMap.get(wordKey).add(word);
-            }else {
-                List<String> wordList=new ArrayList<>();
-                wordList.add(word);
-                wordsMap.put(wordKey,wordList);
-            }
+           String key=String.valueOf(wordChar);
 
-        }
-        return new LinkedList<>(wordsMap.values());
+           if(wordkeyMap.containsKey(key)){
+               wordkeyMap.get(key).add(word);
+           }else {
+               List<String> words=new LinkedList<>();
+               words.add(word);
+               wordkeyMap.put(key,words);
+           }
 
+       }
+
+       return new LinkedList<>(wordkeyMap.values());
 
     }
 }

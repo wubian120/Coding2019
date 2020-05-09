@@ -31,32 +31,33 @@ public class A199二叉树的右视图p {
 
     public List<Integer> rightSideView(TreeNode root) {
 
-        List<Integer> results= new LinkedList<>();
-        if(root==null){
-            return results;
-        }
+      List<Integer> results=new LinkedList<>();
+      if(root==null)return results;
 
-        Queue<TreeNode> queue= new LinkedList<>();
-        queue.offer(root);
+      Queue<TreeNode> queue=new LinkedList<>();
+      queue.offer(root);
 
-        while (!queue.isEmpty()){
-            int size=queue.size();
-            for(int i=0;i<size;i++){
-                TreeNode curNode=queue.poll();
-                if(curNode.left!=null){
-                    queue.offer(curNode.left);
-                }
-                if(curNode.right!=null){
-                    queue.offer(curNode.right);
-                }
+      while (!queue.isEmpty()){
+          int size= queue.size();
+          for(int i=0;i<size;i++){
 
-                if(i==size-1){
-                    results.add(curNode.val);
-                }
-            }
-        }
+              TreeNode node = queue.poll();
+              if(node.left!=null){
+                  queue.offer(node.left);
+              }
 
-        return results;
+              if(node.right!=null){
+                  queue.offer(node.right);
+              }
+
+              if(i==size-1){
+                  results.add(node.val);
+              }
+
+          }
+      }
+
+      return results;
 
 
 
