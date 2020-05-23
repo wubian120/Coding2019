@@ -18,56 +18,60 @@ public class A51N皇后p {
     public List<List<String>> solveNQueens(int n) {
 
         List<List<String>> results=new LinkedList<>();
-        int[] queen=new int[n];
-        backtrack(results,queen,0);
-
+        int[] q = new int[n];
+        backtrack(q,0,results);
         return results;
 
     }
 
-    private void backtrack(List<List<String>> results, int[] q, int pos) {
+    private void backtrack(int[] q, int pos, List<List<String>> results){
 
         int len=q.length;
         if(pos==len){
-            List<String> cur=new ArrayList<>();
-
+            List<String> curList=new LinkedList<>();
             for(int i=0;i<len;i++){
                 StringBuilder builder = addPoints(len);
                 builder.setCharAt(q[i],'Q');
-                cur.add(builder.toString());
+                curList.add(builder.toString());
             }
-            results.add(cur);
+            results.add(curList);
+
             return;
         }
 
         for(int i=0;i<len;i++){
             q[pos]=i;
             if(isValid(q,pos)){
-                backtrack(results,q,pos+1);
+                backtrack(q,pos+1,results);
             }
         }
 
     }
 
-    private boolean isValid(int[] q, int pos) {
-        for (int i = 0; i < pos; i++) {
-            if (q[i] == q[pos]) {
+    private boolean isValid(int[] q, int pos){
+
+        for(int i=0;i<pos;i++){
+            if(q[i]==q[pos]){
                 return false;
             }
-            if (Math.abs(i - pos) == Math.abs(q[i] - q[pos])) {
+            if(Math.abs(i-pos)==Math.abs(q[i]-q[pos])){
                 return false;
             }
         }
         return true;
+
     }
 
-    private StringBuilder addPoints(int n) {
+    private StringBuilder addPoints(int n){
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < n; i++) {
-            builder.append('.');
+        for(int i=0;i<n;i++){
+            builder.append(".");
         }
         return builder;
     }
+
+
+
 
 
     public static void main(String[] args) {

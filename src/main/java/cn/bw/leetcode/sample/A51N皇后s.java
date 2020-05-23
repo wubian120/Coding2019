@@ -30,6 +30,7 @@ public class A51N皇后s {
 
             for(int i=0;i<len;i++){
                 StringBuilder builder = addPoints(len);
+                //注意
                 builder.setCharAt(q[i],'Q');
                 cur.add(builder.toString());
             }

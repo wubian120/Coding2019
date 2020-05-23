@@ -18,20 +18,18 @@ public class A215数组中第K个最大元素p {
 
     public int findKthLargestHeap(int[] nums, int k) {
 
-        PriorityQueue<Integer> queue
-                = new PriorityQueue<>();
 
-        for (int i : nums) {
-            queue.add(i);
+        PriorityQueue<Integer> heap = new PriorityQueue<>();
 
-            if (queue.size() > k) {
-                queue.poll();
+        for (int v : nums) {
+
+            heap.offer(v);
+            if (heap.size() > k) {
+                heap.poll();
             }
         }
 
-
-        return queue.poll();
-
+        return heap.poll();
 
     }
 
@@ -42,16 +40,17 @@ public class A215数组中第K个最大元素p {
         return quickSelect(nums, 0, len - 1, len - k);
     }
 
-    private int quickSelect(int[] nums, int left, int right, int ksmall) {
-
+    private int quickSelect(int[] nums,
+                            int left,
+                            int right,
+                            int ksmall) {
         if (left == right) {
             return nums[left];
         }
-        Random random = new Random();
-        int pivotIdx = left + random.nextInt(right - left);
+        Random rand = new Random();
+        int pivotIdx = left + rand.nextInt(right - left);
 
         pivotIdx = partition(pivotIdx, left, right, nums);
-
         if (pivotIdx == ksmall) {
             return nums[pivotIdx];
         } else if (pivotIdx < ksmall) {
@@ -59,29 +58,23 @@ public class A215数组中第K个最大元素p {
         } else {
             return quickSelect(nums, left, pivotIdx - 1, ksmall);
         }
-
-
     }
 
-    private int partition(int idx, int left, int right, int[] nums) {
+    private int partition(int idx, int left,
+                          int right, int[] nums) {
 
         int pivot = nums[idx];
-
         swap(nums, idx, right);
 
         int cur = left;
-        for (int i = left; i < right; i++) {
-
+        for (int i = cur; i < right; i++) {
             if (nums[i] < pivot) {
                 swap(nums, i, cur);
                 cur++;
             }
-
         }
         swap(nums, cur, right);
-
         return cur;
-
     }
 
 

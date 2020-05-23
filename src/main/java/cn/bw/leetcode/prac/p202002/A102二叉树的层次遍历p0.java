@@ -30,41 +30,29 @@ public class A102二叉树的层次遍历p0 {
 
 
     public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> results=new LinkedList<>();
+        if(root==null)return results;
 
-      List<List<Integer>> levels=new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        int level=0;
+        while (!queue.isEmpty()){
+            results.add(new LinkedList<>());
+            int size=queue.size();
 
-      if(root==null)return levels;
+            for(int i=0;i<size;i++){
+                TreeNode curNode=queue.remove();
+                results.get(level).add(curNode.val);
+                if(curNode.left!=null){
+                    queue.add(curNode.left);
+                }
+                if(curNode.right!=null){
+                    queue.add(curNode.right);
+                }
 
-      Queue<TreeNode> queue = new LinkedList<TreeNode>();
-      queue.add(root);
-
-      int level=0;
-
-      while (!queue.isEmpty()){
-
-          levels.add(new LinkedList<>());
-
-          int levelLen=queue.size();
-
-          for(int i=0;i<levelLen;i++){
-              TreeNode node =queue.poll();
-
-              levels.get(level).add(node.val);
-
-              if(node.left!=null){
-                  queue.add(node.left);
-              }
-              if(node.right!=null){
-                  queue.add(node.right);
-              }
-          }
-          level++;
-
-      }
-
-      return levels;
-
-
-
+            }
+            level++;
+        }
+        return results;
     }
 }

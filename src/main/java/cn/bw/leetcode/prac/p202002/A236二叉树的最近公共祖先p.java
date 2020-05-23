@@ -23,21 +23,27 @@ public class A236二叉树的最近公共祖先p {
     }
 
 
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    public TreeNode lowestCommonAncestor(TreeNode root,
+                                         TreeNode p,
+                                         TreeNode q) {
 
-        if(root==null||root==p||root==q)return root;
+        if(root==null||root==p||root==q){
+            return root;
+        }
 
-        TreeNode leftSubCo = lowestCommonAncestor(root.left,p, q);
-        TreeNode rightSubCo = lowestCommonAncestor(root.right,p,q);
+        TreeNode leftSubCo=lowestCommonAncestor(root.left,p,q);
+        TreeNode rightSub = lowestCommonAncestor(root.right,p,q);
 
         if(leftSubCo==null){
-            return rightSubCo;
+            return rightSub;
         }
-        if(rightSubCo==null){
+        if(rightSub==null){
             return leftSubCo;
         }
 
         return root;
+
+
 
     }
 
