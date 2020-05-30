@@ -5,6 +5,37 @@ public class QuickSortOne {
     public static void sort(int[] numbers) {
 
 
+        quickSort(numbers,0,numbers.length-1);
+
+    }
+
+    private static void quickSort(int[] nums, int left,int right){
+        if(left>right)return;
+
+        int pivot = nums[left];
+        int start=left, end=right;
+
+        while (start!=end){
+            while (start<end&& pivot<=nums[end]){
+                end--;
+            }
+            while (start<end && nums[start]<pivot){
+                start++;
+            }
+
+            if(start<end){
+                int t = nums[start];
+                nums[start]=nums[end];
+                nums[end]=t;
+            }
+        }
+
+        nums[left]=nums[start];
+        nums[start]=pivot;
+
+        quickSort(nums,left,start-1);
+        quickSort(nums,start+1,right);
+
     }
 
 

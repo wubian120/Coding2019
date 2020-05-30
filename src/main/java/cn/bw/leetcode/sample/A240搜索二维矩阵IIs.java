@@ -9,6 +9,25 @@ package cn.bw.leetcode.sample;
 
 public class A240搜索二维矩阵IIs {
 
+
+
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int row = matrix.length-1;
+        int col = 0;
+
+        //边界
+        while (row>=0 && col<matrix[0].length){
+            if(matrix[row][col]>target){
+                row--;
+            }else if(matrix[row][col]<target){
+                col++;
+            }else {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private boolean binarySearch(int[][] matrix, int target, int start, boolean vertical) {
         int lo = start;
         int hi = vertical ? matrix[0].length-1 : matrix.length-1;
@@ -37,7 +56,7 @@ public class A240搜索二维矩阵IIs {
         return false;
     }
 
-    public boolean searchMatrix(int[][] matrix, int target) {
+    public boolean searchMatrix1(int[][] matrix, int target) {
         // an empty matrix obviously does not contain `target`
         if (matrix == null || matrix.length == 0) {
             return false;
@@ -54,6 +73,26 @@ public class A240搜索二维矩阵IIs {
         }
 
         return false;
+    }
+
+
+    public static void main(String[] args){
+
+        int[][] matrix = {
+                {1,4,7,11,15},
+                {2,5,8,12,19},
+                {3,6,9,16,22},
+                {10,13,14,17,24},
+//                {18,21,23,26,30}
+        };
+
+        A240搜索二维矩阵IIs  a = new A240搜索二维矩阵IIs();
+
+        int target = 24;
+
+        boolean result = a.searchMatrix(matrix,target);
+
+        System.out.println(result);
     }
 
 
