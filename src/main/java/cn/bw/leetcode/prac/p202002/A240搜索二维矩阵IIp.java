@@ -11,56 +11,32 @@ public class A240搜索二维矩阵IIp {
 
     public boolean searchMatrix(int[][] matrix, int target) {
 
-        if(matrix==null||matrix.length==0){
+        if(matrix==null||matrix.length==0||matrix[0].length==0){
             return false;
         }
 
-        int shorter = Math.min(matrix.length, matrix[0].length);
+        int rows = matrix.length;
+        int row=0, col=matrix[0].length-1;
 
-        for(int i=0;i<shorter;i++){
-            boolean vertical=binarySearch(matrix,target,i,true);
-            boolean horizon = binarySearch(matrix,target,i,false);
+        while (row<rows&&col>=0){
 
-            if(vertical||horizon){
+            if(matrix[row][col]>target){
+                col--;
+
+            }else if(matrix[row][col]<target){
+                row++;
+            }else {
                 return true;
             }
+
         }
         return false;
 
+
+
     }
 
-    private boolean binarySearch(int[][] matrix,
-                                 int target,
-                                 int start,
-                                 boolean isVertical) {
 
-        int low = start;
-        int high = isVertical ? matrix[0].length - 1 : matrix.length - 1;
-
-        while (high>=low){
-            int mid = (low+high)/2;
-            if(isVertical){
-                //列
-                if(matrix[start][mid]<target){
-                    low=mid+1;
-                }else if(matrix[start][mid]>target){
-                    high=mid-1;
-                }else {
-                    return true;
-                }
-            }else {
-                //行
-                if(matrix[mid][start]<target){
-                    low=mid+1;
-                }else if(matrix[mid][start]>target){
-                    high=mid-1;
-                }else {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
 
 
 }
