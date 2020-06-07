@@ -10,19 +10,29 @@ package cn.bw.leetcode.prac.p202002;
 public class A53最大子序列和p0 {
 
     public int maxSubArray(int[] nums) {
+        int sum = nums[0], current = nums[0];
+        for (int i = 1; i < nums.length; i++) {
 
+            if (current > 0) {
+                current += nums[i];
+            } else {
+                current = nums[i];
+            }
 
-        return 0;
+            sum = Math.max(sum, current);
+        }
+
+        return sum;
 
     }
 
 
-    public static void main(String...args){
+    public static void main(String... args) {
 
-        int[] nums={1};
-        A53最大子序列和p0 a=new A53最大子序列和p0();
+        int[] nums = {1};
+        A53最大子序列和p0 a = new A53最大子序列和p0();
 
-        int result=a.maxSubArray(nums);
+        int result = a.maxSubArray(nums);
 
     }
 }

@@ -11,6 +11,8 @@ public class A76最小覆盖子串p {
 
     public String minWindow(String s, String t) {
 
+        return null;
+
     }
 
 }
