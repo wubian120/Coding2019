@@ -15,32 +15,31 @@ public class A128最长连续序列p {
 
     public int longestConsecutive(int[] nums) {
 
+        if(nums==null|| nums.length==0)return 0;
 
-        if(nums==null||nums.length==0){
-            return 0;
-        }
-        Set<Integer> numSet=new HashSet<>();
-
-        for(int i:nums){
-            numSet.add(i);
+        Set<Integer> set = new HashSet<>();
+        for(int n : nums){
+            set.add(n);
         }
 
-        int maxLen=0;
+        int max =0;
         for(int i:nums){
-            if(numSet.remove(i)){
-                int pre=i-1, next=i+1;
+            if(set.remove(i)){
+                int pre = i-1, next = i+1;
 
-                while (numSet.remove(pre)){
+                while (set.remove(pre)){
                     pre--;
                 }
-                while (numSet.remove(next)){
+
+                while (set.remove(next)){
                     next++;
                 }
-
-                maxLen=Math.max(maxLen, next-pre-1);
+                max = Math.max(max, next-pre-1);
             }
         }
+        return max;
 
-        return maxLen;
+
+
     }
 }
