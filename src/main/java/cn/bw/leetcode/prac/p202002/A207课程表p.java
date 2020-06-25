@@ -16,38 +16,39 @@ public class A207课程表p {
 
         int[] indegrees = new int[numCourses];
 
-        for(int[] cp : prerequisites){
-            indegrees[cp[0]]++;
+        for(int[] pre:prerequisites){
+            indegrees[pre[0]]++;
         }
 
         Queue<Integer> queue = new LinkedList<>();
 
         for(int i=0;i<numCourses;i++){
-
             if(indegrees[i]==0){
                 queue.offer(i);
             }
         }
 
+
         while (!queue.isEmpty()){
 
             int course = queue.poll();
 
-            numCourses--;
 
-            for(int[] pre : prerequisites){
+            numCourses--;
+            for(int[] pre:prerequisites){
                 if(pre[1]!=course){
                     continue;
                 }
-
-                --indegrees[pre[0]];
+                indegrees[pre[0]]--;
                 if(indegrees[pre[0]]==0){
                     queue.offer(pre[0]);
                 }
+
             }
 
         }
         return numCourses==0;
+
 
     }
 }

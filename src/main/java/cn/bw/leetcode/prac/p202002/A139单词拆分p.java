@@ -1,22 +1,26 @@
-package cn.bw.leetcode.sample;
+package cn.bw.leetcode.prac.p202002;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 /**
- * 解法：
- *  （1）双指针
+ * @ClassName : A139单词拆分p
+ * @Author : Richard.Wu
+ * @Date: 2020-06-25 21:38
+ * @Description :
  */
-public class A139单词拆分 {
 
-    public boolean wordBreak(String s, List<String> wordDict){
+public class A139单词拆分p {
 
-        Set<String> wordSet = new HashSet<>(wordDict);
+    public boolean wordBreak(String s, List<String> wordDict) {
 
-        boolean[] dp=new boolean[s.length()+1];
+        Set<String> wordSet = new HashSet<>();
+        int len=s.length();
+
+        boolean[] dp = new boolean[len+1];
         dp[0]=true;
-        int len = s.length();
+
         for(int i=1;i<=len;i++){
             for(int j=0;j<i;j++){
                 if(dp[j]&&wordSet.contains(s.substring(j,i))){
@@ -25,7 +29,9 @@ public class A139单词拆分 {
                 }
             }
         }
+
         return dp[len];
+
     }
 
 }
