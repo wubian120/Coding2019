@@ -13,35 +13,28 @@ public class A84柱状图中的最大矩形p0 {
 
     public int largestRectangleArea(int[] heights) {
 
+        int len = heights.length;
 
-        int maxArea=0;
         Stack<Integer> stack = new Stack<>();
         stack.push(-1);
-
-        for(int i=0;i<heights.length;i++){
-
-            while (stack.peek()!=-1&& heights[stack.peek()]>=heights[i]){
-
+        int maxArea = 0;
+        for (int i = 0; i < len; i++) {
+            while (stack.peek() != -1 && heights[stack.peek()] >= heights[i]) {
                 int h = heights[stack.pop()];
-                int w = i-stack.peek()-1;
+                int w = i - stack.peek() - 1;
 
-                maxArea = Math.max(maxArea,w*h);
+                maxArea = Math.max(maxArea, w * h);
             }
             stack.push(i);
-
         }
 
-        while (stack.peek()!=-1){
+        while (stack.peek() != -1) {
             int h = heights[stack.pop()];
-            int w = heights.length-stack.peek()-1;
-
-            maxArea = Math.max(maxArea,w*h);
+            int w = len - stack.peek() - 1;
+            maxArea = Math.max(maxArea, w * h);
         }
-
 
         return maxArea;
-
-
     }
 
 }

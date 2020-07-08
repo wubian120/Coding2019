@@ -15,23 +15,23 @@ public class A139单词拆分p {
 
     public boolean wordBreak(String s, List<String> wordDict) {
 
-        Set<String> wordSet = new HashSet<>();
-        int len=s.length();
+        Set<String> wordSet = new HashSet<>(wordDict);
 
-        boolean[] dp = new boolean[len+1];
+        int len=s.length();
+        boolean[] dp=new boolean[len+1];
         dp[0]=true;
 
-        for(int i=1;i<=len;i++){
-            for(int j=0;j<i;j++){
-                if(dp[j]&&wordSet.contains(s.substring(j,i))){
-                    dp[i]=true;
+        for(int r=1;r<=len;r++){
+            for(int l=0;l<r;l++){
+                if(dp[l]&&wordSet.contains(s.substring(l,r))){
+                    dp[r]=true;
                     break;
                 }
             }
         }
 
-        return dp[len];
 
+        return dp[len];
     }
 
 }

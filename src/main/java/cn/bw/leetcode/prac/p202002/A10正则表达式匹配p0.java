@@ -13,19 +13,20 @@ public class A10正则表达式匹配p0 {
 
     public boolean isMatch(String s, String p) {
 
-        if (p.isEmpty()) {
+        if(p.isEmpty()){
             return s.isEmpty();
         }
 
-        boolean fMatch =
-                (!s.isEmpty() &&
-                        (s.charAt(0) == p.charAt(0) || p.charAt(0) == '.'));
+        boolean firstMatch = (!s.isEmpty()&&
+                (s.charAt(0)==p.charAt(0)||p.charAt(0)=='.'));
 
-        if(p.length()>=2 && p.charAt(1)=='*'){
+        if(p.length()>=2&& p.charAt(1)=='*'){
+
             return isMatch(s,p.substring(2))||
-                    (fMatch&& isMatch(s.substring(1),p));
+                    (firstMatch&&isMatch(s.substring(1),p));
+
         }else {
-            return fMatch && isMatch(s.substring(1),p.substring(1));
+            return firstMatch && isMatch(s.substring(1),p.substring(1));
         }
 
 

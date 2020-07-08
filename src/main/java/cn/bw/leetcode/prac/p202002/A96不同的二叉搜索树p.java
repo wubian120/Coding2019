@@ -15,14 +15,12 @@ public class A96不同的二叉搜索树p {
 
     public int numTrees(int n) {
 
-        int[] dp = new int[n+1];
-        dp[0]=1;
-        dp[1]=1;
-
-        for(int i=2;i<=n;i++){
-            for(int sub=0;sub<i;sub++){
-
-                dp[i] += dp[sub]* dp[i-sub-1];
+        int[] dp = new int[n + 1];
+        dp[0] = 1;
+        dp[1] = 1;
+        for (int i = 2; i <= n; i++) {
+            for (int sub = 0; sub < i; sub++) {
+                dp[i] += dp[sub] * dp[i - sub - 1];
             }
         }
 

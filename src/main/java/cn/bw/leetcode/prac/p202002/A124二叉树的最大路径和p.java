@@ -21,30 +21,35 @@ public class A124二叉树的最大路径和p {
 
     public int maxPathSum(TreeNode root) {
 
-          if(root==null)return 0;
+        if(root==null)return 0;
 
-          getMaxPth(root);
-          return maxValue;
+        getMathPath(root);
 
+        return maxValue;
     }
 
     int maxValue = Integer.MIN_VALUE;
 
-    private int getMaxPth(TreeNode cur){
-        int left = 0, right =0;
-        int val = cur.val;
+    private int getMathPath(TreeNode current) {
 
-        if(cur.left!=null){
-            left = getMaxPth(cur.left);
+        int leftMax = 0, rightMax = 0;
+
+        int value = current.val;
+
+        if (current.left != null) {
+            leftMax = getMathPath(current.left);
         }
-        if(cur.right!=null){
-            right = getMaxPth(cur.right);
+        if (current.right != null) {
+            rightMax = getMathPath(current.right);
         }
 
-        val += (left>0?left:0) + (right>0?right:0);
+        value += (leftMax > 0 ? leftMax : 0) + (rightMax > 0 ? rightMax : 0);
+        maxValue = Math.max(maxValue, value);
 
-        maxValue = Math.max(maxValue,val);
+        return current.val + Math.max(leftMax > 0 ? leftMax : 0,
+                rightMax > 0 ? rightMax : 0);
 
-        return cur.val+Math.max((left>0?left:0),(right>0?right:0));
     }
+
+
 }

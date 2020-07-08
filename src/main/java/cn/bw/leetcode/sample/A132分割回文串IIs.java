@@ -5,13 +5,9 @@ package cn.bw.leetcode.sample;
  * @Description : leetcode 132 分割回文串II
  * 返回 符合要求的 最少分割次数。
  * 思路：
- *
+ * <p>
  * dp[i][j]   i,j 之间是 回文子串
  * 两层遍历， 左右 判断是否是回文子串， 在选择大小。
- *
- *
- *
- *
  * @Author : Richard.Wu
  * @Date: 2020-01-23 23:16
  */
@@ -27,8 +23,9 @@ public class A132分割回文串IIs {
             results[right] = right;
             for (int left = 0; left <= right; left++) {
                 if (s.charAt(left) == s.charAt(right)) {
-                    if ( (right - left <2 ||dp[left + 1][right - 1] )) {
+                    if ((right - left < 2 || dp[left + 1][right - 1])) {
                         dp[left][right] = true;
+                        // 注意这个地方 如果 left==0 则 results[right] 0
                         results[right] =
                                 left == 0 ? 0 : Math.min(results[right],
                                         results[left - 1] + 1);
@@ -36,7 +33,7 @@ public class A132分割回文串IIs {
                 }
             }
         }
-        return results[len-1];
+        return results[len - 1];
     }
 
 }

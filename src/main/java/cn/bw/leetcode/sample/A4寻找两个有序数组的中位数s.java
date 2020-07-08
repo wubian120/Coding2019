@@ -16,20 +16,30 @@ package cn.bw.leetcode.sample;
 public class A4寻找两个有序数组的中位数s {
 
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        int n = nums1.length;
-        int m = nums2.length;
-        int left = (n + m + 1) / 2;
-        int right = (n + m + 2) / 2;
-        //将偶数和奇数的情况合并，如果是奇数，会求两次同样的 k 。
-        return (getKth(nums1, 0, n - 1, nums2, 0, m - 1, left)
-                + getKth(nums1, 0, n - 1, nums2, 0, m - 1, right)) * 0.5;
+
+        int len1 = nums1.length;
+        int len2 = nums2.length;
+
+        int left = (len1 + len2 + 1) / 2;
+        int right = (len1 + len2 + 2) / 2;
+
+        return (getKth(nums1, 0, len1 - 1, nums2, 0, len2 - 1, left) +
+                getKth(nums1, 0, len1 - 1, nums2, 0, len2 - 1, right)) * 0.5;
+
+
     }
 
-    private int getKth(int[] nums1, int start1, int end1, int[] nums2, int start2, int end2, int k) {
+    private int getKth(int[] nums1, int start1, int end1,
+                       int[] nums2, int start2, int end2,
+                       int k) {
+
         int len1 = end1 - start1 + 1;
         int len2 = end2 - start2 + 1;
-        //让 len1 的长度小于 len2，这样就能保证如果有数组空了，一定是 len1
-        if (len1 > len2) return getKth(nums2, start2, end2, nums1, start1, end1, k);
+
+        if (len1 > len2) {
+            return getKth(nums2, start2, end2, nums1, start1, end1, k);
+        }
+
         if (len1 == 0) return nums2[start2 + k - 1];
 
         if (k == 1) return Math.min(nums1[start1], nums2[start2]);

@@ -31,37 +31,36 @@ public class A95不同的二叉搜索树IIp {
         if(n==0){
             return Collections.emptyList();
         }
-
         return generate(1,n);
+
 
     }
 
     private List<TreeNode> generate(int start, int end){
         List<TreeNode> tree = new LinkedList<>();
+
         if(start>end){
             tree.add(null);
             return tree;
         }
 
         for(int i=start;i<=end;i++){
-            List<TreeNode> leftSub=generate(start,i-1);
+            List<TreeNode> leftSub = generate(start,i-1);
             List<TreeNode> rightSub = generate(i+1,end);
 
-            for(TreeNode left:leftSub){
-                for(TreeNode right:rightSub){
+            for(TreeNode left: leftSub){
+                for (TreeNode right:rightSub){
+                    TreeNode cur = new TreeNode(i);
+                    cur.left = left;
+                    cur.right =right;
 
-                    TreeNode root = new TreeNode(i);
-                    root.left=left;
-                    root.right = right;
-
-                    tree.add(root);
-
-
+                    tree.add(cur);
                 }
             }
         }
 
         return tree;
+
     }
 
 
